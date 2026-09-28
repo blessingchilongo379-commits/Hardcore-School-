@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hardcore School</title>
+<meta name="theme-color" content="#070b1a">
+<meta name="color-scheme" content="dark light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070b1a;--panel:#0f1731;--line:#1f2d5c;--tx:#e8f0ff;--mute:#8fa3d6;--cy:#22e6ff;--mg:#ff3d9a;--ok:#39ff9c;--bad:#ff4d5e;--glow:0 0 18px rgba(34,230,255,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#eef3ff;--panel:#fff;--line:#c6d3f5;--tx:#0d1633;--mute:#4a5a8a;--cy:#0077b6;--mg:#c2185b;--ok:#0a8f4f;--bad:#c62828;--glow:0 2px 10px rgba(0,60,140,.15)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 80% -10%,rgba(255,61,154,.12),transparent 45%),radial-gradient(circle at 0 0,rgba(34,230,255,.12),transparent 40%),var(--bg);color:var(--tx);font:17px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1,h2{font-family:Orbitron,system-ui,sans-serif;margin:0}
+h1{font-size:1.5rem;letter-spacing:.04em;background:linear-gradient(90deg,var(--cy),var(--mg));-webkit-background-clip:text;background-clip:text;color:transparent}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:18px;margin-bottom:14px;box-shadow:var(--glow)}
+button{font:inherit;color:var(--tx);background:transparent;border:1px solid var(--cy);border-radius:99px;padding:12px 18px;cursor:pointer;min-height:48px;position:relative;overflow:hidden;transition:transform .15s,background .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}button:active{transform:scale(.96)}
+button:hover{background:rgba(34,230,255,.12)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--mg);outline-offset:2px}
+.primary{background:linear-gradient(90deg,var(--cy),var(--mg));color:#050814;border:0;font-weight:700}
+.grid{display:grid;gap:10px}
+button[aria-pressed="true"]{background:linear-gradient(90deg,var(--cy),var(--mg));color:#050814;font-weight:700;border:0}
+body.sp{font-size:22px;--line:#6f86d6}body.sp button{min-height:64px;font-size:1.2rem}body.sp .q{font-size:1.6rem}
+.opt{text-align:left;width:100%;border-radius:18px}
+.opt.good{border-color:var(--ok);background:rgba(57,255,156,.15)}
+.opt.bad{border-color:var(--bad);background:rgba(255,77,94,.15)}
+.badge{font-size:.85rem;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:4px 10px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--cy),var(--mg));transition:width .25s linear}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+input[type=text],input[type=number]{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--cy);border-radius:10px;padding:12px;margin-bottom:10px}
+.fb{margin-top:12px;padding:12px;border-radius:10px;border:1px solid var(--line)}
+.q{font-size:1.15rem;margin:8px 0 14px}
+.hide{display:none}label.ck{display:flex;gap:10px;align-items:center;min-height:44px}label.ck input{width:24px;height:24px}.ow{color:var(--mute);font-size:.95rem}
+ol{padding-left:20px}
+.big{font:800 2.4rem Orbitron,system-ui,sans-serif;color:var(--cy)}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+body::before{content:"";position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;background-image:linear-gradient(rgba(34,230,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(34,230,255,.06) 1px,transparent 1px);background-size:40px 40px;animation:gd 14s linear infinite}
+@keyframes gd{to{background-position:0 40px}}
+.card{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);background:linear-gradient(160deg,rgba(34,230,255,.07),rgba(255,61,154,.05)),var(--panel);border-color:rgba(34,230,255,.35)}
+h1{filter:drop-shadow(0 0 12px rgba(34,230,255,.5))}.primary{box-shadow:0 0 16px rgba(255,61,154,.45)}
+.tag{font-size:.7rem;color:var(--mute);letter-spacing:.22em;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+main{padding-bottom:130px}.g2{grid-template-columns:repeat(2,1fr)}
+select{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--cy);border-radius:14px;padding:12px;margin:6px 0 12px}
+label{display:block;margin-top:6px}
+section:not(.hide) .card{animation:up .5s cubic-bezier(.2,.8,.2,1) both}
+section:not(.hide) .card:nth-child(2){animation-delay:.07s}section:not(.hide) .card:nth-child(3){animation-delay:.14s}section:not(.hide) .card:nth-child(4){animation-delay:.21s}
+@keyframes up{from{opacity:0;transform:translateY(20px)}}
+.opt.good{animation:glow .7s}.opt.bad{animation:shk .4s}
+@keyframes glow{50%{box-shadow:0 0 26px var(--ok)}}@keyframes shk{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:rip .6s linear;pointer-events:none}@keyframes rip{to{transform:scale(4);opacity:0}}
+.bar.u i{animation:pl .45s infinite alternate}@keyframes pl{to{opacity:.35}}
+.wv{display:none;gap:3px;align-items:flex-end;height:18px}body.talk .wv{display:flex}.wv i{width:4px;background:var(--cy);border-radius:2px;animation:wv .8s ease-in-out infinite}.wv i:nth-child(2){animation-delay:.2s}.wv i:nth-child(3){animation-delay:.4s}@keyframes wv{0%,100%{height:4px}50%{height:18px}}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:space-around;padding:8px 8px calc(env(safe-area-inset-bottom,0px) + 8px);background:var(--panel);border-top:1px solid var(--line)}
+nav button{flex:1;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.72rem;min-height:58px;padding:4px;color:var(--mute)}
+nav button b{font-size:1.2rem;padding:2px 20px;border-radius:99px;transition:background .3s}nav button.on{color:var(--tx)}nav button.on b{background:rgba(34,230,255,.28)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+html{font-size:calc(16px*var(--z,1))}body{font-size:calc(17px*var(--z,1))}body.sp{font-size:calc(22px*var(--z,1))}
+.noanim *{animation:none!important;transition:none!important}.hc{--mute:#dfe7ff;--line:#9fb3f0;--tx:#fff}:root.hc[data-theme="light"]{--mute:#1a2550;--line:#0d1633;--tx:#000}
+input[type=file]{font:inherit;color:var(--mute);padding:6px 0}h3{margin:16px 0 4px;color:var(--cy)}
+:root{--r:24px}.card{border-radius:var(--r)}body{line-height:var(--lh,1.5)}
+body.ff-dys{font-family:"Comic Sans MS","Comic Neue",Verdana,sans-serif}body.ff-ser{font-family:Georgia,"Times New Roman",serif}body.ff-mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+body.nogrid::before{display:none}
+body[data-v="learn"] .Q,body[data-v="quiz"] .L{display:none!important}
+header{position:sticky;top:0;z-index:4;padding:10px 0;margin-top:-6px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.opt{transition:transform .15s,border-color .2s,background .2s}.opt:not(:disabled):hover{transform:translateX(4px);border-color:var(--mg)}
+.primary:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(255,61,154,.6)}
+.bar{height:12px}nav button.on{text-shadow:0 0 10px var(--cy)}
+.tile{border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center;font-size:.85rem;color:var(--mute)}.tile b{display:block;font:800 1.5rem Orbitron,system-ui,sans-serif;color:var(--cy)}
+.ring{width:160px;height:160px;border-radius:50%;margin:10px auto;display:grid;place-items:center;background:radial-gradient(closest-side,var(--panel) 78%,transparent 80%),conic-gradient(var(--cy) calc(var(--p,0)*1%),var(--line) 0)}.ring .big{font-size:1.6rem}
+
+/* =========================================================
+   HARDCORE SCHOOL // FUTURE HUD UI v2
+   Visual redesign layer — functionality preserved.
+   ========================================================= */
+:root{
+  --bg:#030611;--bg2:#071025;--panel:rgba(10,18,43,.72);--panel2:rgba(15,28,61,.68);
+  --line:rgba(94,151,255,.20);--line2:rgba(89,235,255,.34);--tx:#edf6ff;--mute:#8ca4c9;
+  --cy:#56edff;--cy2:#159dff;--mg:#ff4fc4;--ok:#51f7aa;--bad:#ff5f78;--gold:#ffd76a;
+  --glow:0 0 0 1px rgba(86,237,255,.05),0 18px 55px rgba(0,0,0,.34),0 0 30px rgba(21,157,255,.09);
+  --r:22px;--z:1
+}
+:root[data-theme="light"]{
+  --bg:#eaf3ff;--bg2:#dbeaff;--panel:rgba(255,255,255,.78);--panel2:rgba(246,250,255,.9);
+  --line:rgba(30,73,139,.15);--line2:rgba(0,126,190,.35);--tx:#07142f;--mute:#536b92;
+  --cy:#007da8;--cy2:#1768d8;--mg:#b81f80;--ok:#078a58;--bad:#c22d49;--gold:#9a6900;
+  --glow:0 14px 45px rgba(31,79,150,.12)
+}
+html{background:var(--bg);font-size:calc(16px*var(--z,1))}
+body{
+  position:relative;overflow-x:hidden;min-height:100vh;color:var(--tx);
+  background:
+   radial-gradient(900px 500px at 100% -5%,rgba(255,79,196,.14),transparent 60%),
+   radial-gradient(800px 600px at -10% 10%,rgba(86,237,255,.13),transparent 60%),
+   linear-gradient(180deg,var(--bg2),var(--bg));
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  letter-spacing:.005em
+}
+body::before{
+  opacity:.65;background-size:44px 44px;
+  background-image:linear-gradient(rgba(86,237,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(86,237,255,.045) 1px,transparent 1px);
+  mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.65) 45%,transparent 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.16;
+  background:linear-gradient(rgba(255,255,255,.018) 50%,transparent 50%);background-size:100% 4px;
+  mix-blend-mode:overlay
+}
+main{max-width:760px;padding:18px 16px 150px}
+header{
+  position:sticky;top:0;margin:-18px -16px 18px;padding:14px 16px 12px;z-index:20;
+  background:linear-gradient(180deg,rgba(3,6,17,.94),rgba(3,6,17,.70));
+  border-bottom:1px solid rgba(86,237,255,.10);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)
+}
+:root[data-theme="light"] header{background:linear-gradient(180deg,rgba(234,243,255,.95),rgba(234,243,255,.74))}
+header>div:first-child{position:relative;padding-left:48px}
+header>div:first-child::before{
+  content:"HS";position:absolute;left:0;top:1px;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+  font:800 .72rem Orbitron,sans-serif;color:#03101d;background:linear-gradient(135deg,var(--cy),var(--mg));
+  box-shadow:0 0 24px rgba(86,237,255,.28),inset 0 0 0 1px rgba(255,255,255,.4)
+}
+h1{font-size:1.34rem;letter-spacing:.07em;text-transform:uppercase;filter:none;text-shadow:0 0 22px rgba(86,237,255,.28)}
+.tag{font-size:.62rem;letter-spacing:.28em;margin-top:2px;color:var(--mute)}
+.tag::before{content:"●  ";color:var(--ok);text-shadow:0 0 8px var(--ok)}
+header .row{gap:6px}
+header .badge{font-size:.64rem;padding:5px 8px}
+#th{width:44px;height:44px;padding:0;border-radius:13px;font-size:0;border-color:var(--line2)}
+#th::after{content:"◐";font-size:1.05rem;color:var(--cy)}
+.card{
+  position:relative;margin-bottom:15px;padding:20px;border-radius:var(--r);
+  background:linear-gradient(145deg,rgba(20,39,82,.48),rgba(7,13,31,.72)),var(--panel);
+  border:1px solid var(--line);box-shadow:var(--glow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  overflow:hidden
+}
+.card::before{content:"";position:absolute;left:18px;right:18px;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cy),transparent);opacity:.35}
+.card::after{content:"";position:absolute;width:120px;height:120px;right:-70px;top:-70px;border-radius:50%;background:var(--cy);filter:blur(65px);opacity:.07;pointer-events:none}
+section:not(.hide) .card{animation:hsIn .42s cubic-bezier(.2,.8,.2,1) both}
+@keyframes hsIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
+h2{font-family:Orbitron,ui-sans-serif,sans-serif;font-weight:800;letter-spacing:.03em}
+section .card>h2:first-child{font-size:.82rem!important;text-transform:uppercase;letter-spacing:.14em;color:var(--cy);display:flex;align-items:center;gap:9px}
+section .card>h2:first-child::before{content:"//";font-size:.66rem;color:var(--mg)}
+p{color:var(--mute)}
+button{
+  min-height:48px;border:1px solid rgba(86,237,255,.26);border-radius:14px;padding:11px 15px;
+  background:linear-gradient(180deg,rgba(23,45,87,.56),rgba(9,19,43,.65));color:var(--tx);
+  box-shadow:inset 0 1px rgba(255,255,255,.035),0 5px 18px rgba(0,0,0,.12);
+  transition:transform .18s,border-color .18s,box-shadow .18s,background .18s
+}
+button:hover{background:linear-gradient(180deg,rgba(30,64,116,.65),rgba(11,23,50,.75));border-color:rgba(86,237,255,.62);box-shadow:0 0 22px rgba(86,237,255,.10)}
+button:active{transform:scale(.975)}
+.primary{position:relative;background:linear-gradient(105deg,var(--cy2),var(--cy),var(--mg));color:#03101b;border:0;box-shadow:0 8px 28px rgba(21,157,255,.22),0 0 30px rgba(255,79,196,.12);font-weight:850}
+.primary:hover{box-shadow:0 10px 34px rgba(21,157,255,.32),0 0 34px rgba(255,79,196,.20);transform:translateY(-2px)}
+button[aria-pressed="true"],nav button.on b{background:linear-gradient(135deg,var(--cy2),var(--cy),var(--mg));color:#03101b;box-shadow:0 0 22px rgba(86,237,255,.18)}
+.badge{background:rgba(8,17,38,.55);border-color:var(--line);color:var(--mute);font-size:.72rem}
+.grid{gap:11px}.g2{gap:10px}
+#gr button{min-height:68px;text-align:left;padding:12px 14px;position:relative;overflow:hidden;font-weight:750}
+#gr button::after{content:"↗";position:absolute;right:12px;top:10px;color:var(--cy);opacity:.65}
+#gr button[aria-pressed="true"]{border-color:transparent;box-shadow:0 0 28px rgba(86,237,255,.18)}
+#sbc,#home .L,#home .Q{scroll-margin-top:90px}
+#sbc .grid button{text-align:left;display:flex;align-items:center;justify-content:space-between}
+#sbc .grid button:not(:disabled)::after{content:"OPEN  ›";font:700 .62rem Orbitron;color:var(--cy);opacity:.75}
+#sbc .grid button:disabled{opacity:.38;filter:saturate(.4)}
+#stt{grid-template-columns:repeat(2,1fr)}
+.tile{background:linear-gradient(145deg,rgba(86,237,255,.06),rgba(255,79,196,.035));border-color:var(--line);padding:14px 10px;min-height:78px;display:flex;flex-direction:column;justify-content:center}
+.tile b{font-size:1.55rem;text-shadow:0 0 16px rgba(86,237,255,.24)}
+.ring{width:190px;height:190px;background:radial-gradient(closest-side,var(--panel) 76%,transparent 78%),conic-gradient(var(--cy) calc(var(--p,0)*1%),rgba(86,237,255,.10) 0);box-shadow:0 0 45px rgba(86,237,255,.10);border:1px solid rgba(86,237,255,.16)}
+.big{font-size:2.25rem;text-shadow:0 0 22px rgba(86,237,255,.35)}
+.q{font-size:1.23rem;line-height:1.55;padding:8px 2px 12px;color:var(--tx);font-weight:650}
+#qt{font-family:Inter,system-ui,sans-serif;font-weight:720}
+.opt{text-align:left;width:100%;min-height:58px;border-radius:16px;margin-bottom:8px;display:flex;align-items:center}
+.opt::first-letter{font-family:Orbitron}
+.opt.good{border-color:var(--ok);background:rgba(81,247,170,.10);box-shadow:0 0 24px rgba(81,247,170,.10)}
+.opt.bad{border-color:var(--bad);background:rgba(255,95,120,.10)}
+.bar{height:7px;background:rgba(86,237,255,.09);border:1px solid rgba(86,237,255,.10);margin:14px 0}
+.bar i{background:linear-gradient(90deg,var(--cy),var(--cy2),var(--mg));box-shadow:0 0 14px rgba(86,237,255,.45)}
+#tl{border-color:transparent;background:transparent;padding-left:0;font-family:Orbitron;color:var(--cy)}
+#ans input,#aq,input[type=text],input[type=number],select{background:rgba(2,8,22,.62);border:1px solid var(--line2);border-radius:14px;color:var(--tx);outline:none}
+input:focus,select:focus{border-color:var(--cy);box-shadow:0 0 0 3px rgba(86,237,255,.09),0 0 24px rgba(86,237,255,.10)}
+.fb{background:rgba(3,10,25,.56);border-color:var(--line);line-height:1.55}
+#fb{border-radius:16px}
+#lc{border-color:rgba(86,237,255,.24)}
+#nav{
+  left:50%;right:auto;bottom:12px;transform:translateX(-50%);width:min(700px,calc(100% - 24px));
+  padding:7px;border:1px solid rgba(86,237,255,.16);border-radius:22px;
+  background:rgba(5,11,28,.82);box-shadow:0 15px 50px rgba(0,0,0,.42),0 0 28px rgba(21,157,255,.08);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)
+}
+:root[data-theme="light"] #nav{background:rgba(244,249,255,.84)}
+nav button{border:0!important;background:transparent!important;box-shadow:none!important;min-height:58px;color:var(--mute);font-size:.66rem;font-weight:700;letter-spacing:.04em}
+nav button b{font-size:1.15rem;width:42px;padding:6px 0!important;color:var(--cy);text-shadow:none}
+nav button.on{color:var(--tx);text-shadow:0 0 12px rgba(86,237,255,.32)}
+nav button.on b{color:#03101b}
+#cl{border-color:rgba(255,95,120,.28);color:#ff91a2}
+#er{background:rgba(255,95,120,.08)!important;border-color:rgba(255,95,120,.42)!important}
+footer.card{opacity:.75;font-size:.78rem;text-align:center}
+/* Voice visualizer */
+.wv i{background:linear-gradient(var(--cy),var(--mg));box-shadow:0 0 10px rgba(86,237,255,.5)}
+body.talk #vs{border-color:var(--ok);color:var(--ok);box-shadow:0 0 16px rgba(81,247,170,.12)}
+/* Settings controls */
+#sf{display:grid;gap:12px}
+#sf>div,#sf fieldset{border:1px solid var(--line);border-radius:16px;padding:12px;background:rgba(3,10,25,.24)}
+/* Utility micro-labels */
+label{font-size:.75rem;color:var(--mute);letter-spacing:.04em}
+.hide{display:none!important}
+@media (max-width:560px){
+ main{padding-left:12px;padding-right:12px}
+ header{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
+ .card{padding:16px;border-radius:20px}
+ h1{font-size:1.18rem}.tag{font-size:.54rem}
+ #nav{bottom:8px;width:calc(100% - 16px);border-radius:20px}
+ nav button{min-height:54px}.q{font-size:1.14rem}
+}
+@media (min-width:700px){
+ #home{display:grid;grid-template-columns:1.15fr .85fr;gap:15px;align-items:start}
+ #home>.card:first-child,#home>.card:nth-child(2){grid-column:1/-1}
+ #home>.card:nth-child(3),#home>.card:nth-child(4),#home>.card:nth-child(5){margin-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}.card,section:not(.hide) .card{animation:none!important}button{transition:none}}
+
+
+.settings-panel{margin-top:18px;padding:18px;border:1px solid rgba(0,229,255,.22);border-radius:20px;background:linear-gradient(135deg,rgba(0,229,255,.055),rgba(255,61,154,.045));box-shadow:inset 0 0 35px rgba(0,229,255,.025)}
+.settings-panel h3{margin:.25rem 0 .6rem}.panel-kicker{font-size:.68rem;letter-spacing:.18em;color:var(--cy);font-weight:800}.about-copy{line-height:1.65;padding:10px 2px;color:var(--tx2)}
+.settings-panel details{border-top:1px solid rgba(255,255,255,.08);padding:12px 0}.settings-panel summary{cursor:pointer;font-weight:700}.support-panel input{margin:6px 0 12px}.support-actions{display:flex;gap:8px;flex-wrap:wrap}.small-note{font-size:.78rem;opacity:.72;line-height:1.5}.support-panel button{flex:1 1 150px}
+#homeInfoNote{font-size:.8rem;line-height:1.5;text-align:center;opacity:.72}
+
+/* =========================================================
+   DEVICE MODES // PHONE + DESKTOP
+   ========================================================= */
+body.device-mobile main{max-width:760px;padding-left:12px;padding-right:12px}
+body.device-mobile header{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}
+body.device-mobile .desktop-only{display:none!important}
+body.device-desktop main{max-width:1440px;padding:28px 30px 150px}
+body.device-desktop header{margin:-28px -30px 24px;padding:16px 30px 14px}
+body.device-desktop #home{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:18px;align-items:start}
+body.device-desktop #home>.card{margin-bottom:0}
+body.device-desktop #home>.card:nth-child(1){grid-column:1/-1}
+body.device-desktop #home>.card:nth-child(2){grid-column:1}
+body.device-desktop #home>.card:nth-child(3){grid-column:2}
+body.device-desktop #home>.card:nth-child(4){grid-column:1}
+body.device-desktop #home>.card:nth-child(5){grid-column:2}
+body.device-desktop #home>.card:nth-child(6){grid-column:1}
+body.device-desktop #home>.card:nth-child(7){grid-column:2}
+body.device-desktop #quiz .card{max-width:1080px;margin:0 auto}
+body.device-desktop #end .card{max-width:1080px;margin:0 auto}
+body.device-desktop #tch,#rt,#set{max-width:1200px;margin:0 auto}
+body.device-desktop .grid.g2{grid-template-columns:repeat(4,minmax(0,1fr))}
+body.device-desktop #subs{grid-template-columns:repeat(3,minmax(0,1fr))}
+body.device-desktop nav{left:50%;right:auto;bottom:18px;transform:translateX(-50%);width:min(760px,calc(100% - 36px));border:1px solid var(--line);border-radius:22px;box-shadow:var(--glow);padding:8px}
+body.device-desktop nav button{min-height:52px}
+body.device-desktop .device-switch{min-width:122px}
+.device-switch{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.device-switch .mode-icon{font-size:1rem}
+.device-mode-panel{border:1px solid var(--line);border-radius:18px;padding:14px;margin:12px 0;background:rgba(86,237,255,.035)}
+.device-mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.device-mode-grid button{min-height:58px}
+.device-mode-grid button small{display:block;color:var(--mute);font-size:.72rem;margin-top:3px}
+.device-status{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;color:var(--mute);font-size:.8rem}
+@media(max-width:700px){
+ .device-mode-grid{grid-template-columns:1fr}
+ body.device-desktop main{padding:14px 12px 140px}
+ body.device-desktop header{margin:-14px -12px 18px;padding:12px}
+ body.device-desktop #home{display:block}
+ body.device-desktop nav{left:0;right:0;bottom:0;transform:none;width:auto;border-radius:0;border-left:0;border-right:0;border-bottom:0}
+}
+@media(min-width:1100px){body.device-desktop .grid.g2{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* =========================================================
+   HARDCORE SCHOOL // NEON VOICE LAB + FUTURE UI PATCH
+   Original CSS-only interface elements; no copied artwork/assets.
+   ========================================================= */
+.voice-lab{position:relative;overflow:hidden;margin:0 0 16px;padding:18px;border:1px solid rgba(34,230,255,.42);border-radius:28px;background:linear-gradient(145deg,rgba(34,230,255,.10),rgba(255,61,154,.08) 52%,rgba(57,255,156,.05));box-shadow:0 0 34px rgba(34,230,255,.10),inset 0 0 35px rgba(255,61,154,.04)}
+.voice-lab:before{content:"";position:absolute;inset:-45%;background:conic-gradient(from 90deg,transparent,rgba(34,230,255,.13),transparent 28%,rgba(255,61,154,.10),transparent 55%);animation:vlspin 12s linear infinite;pointer-events:none}
+@keyframes vlspin{to{transform:rotate(360deg)}}
+.voice-lab>*{position:relative;z-index:1}.voice-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.voice-kicker{font:800 .66rem Orbitron,sans-serif;letter-spacing:.18em;color:var(--cy);text-transform:uppercase}.voice-title{font:800 1.15rem Orbitron,sans-serif;margin:3px 0}.voice-sub{font-size:.82rem;color:var(--mute)}
+.voice-core{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(34,230,255,.5);background:radial-gradient(circle,rgba(34,230,255,.18),rgba(255,61,154,.06) 58%,transparent 60%);box-shadow:0 0 22px rgba(34,230,255,.16)}
+.voice-core .wv{display:flex}.voice-core .wv i{width:5px}.voice-core .wv i:nth-child(4),.voice-core .wv i:nth-child(5){display:block}
+.voice-modes{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:15px 0}.voice-mode{border:1px solid var(--line);background:rgba(0,0,0,.12);padding:10px 6px;border-radius:15px;min-height:58px;font-size:.72rem}.voice-mode strong{display:block;color:var(--tx)}.voice-mode span{color:var(--mute);font-size:.64rem}.voice-mode.active{border-color:var(--cy);background:linear-gradient(135deg,rgba(34,230,255,.17),rgba(255,61,154,.11));box-shadow:0 0 18px rgba(34,230,255,.13)}
+.voice-status{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.12);font-size:.78rem}.voice-dot{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 12px var(--ok)}.voice-dot.off{background:var(--bad);box-shadow:0 0 12px var(--bad)}
+.voice-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.voice-actions button{width:100%}.voice-tip{margin-top:9px;font-size:.68rem;color:var(--mute);line-height:1.4}
+.voice-lab .fish-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.voice-lab .fish-row input{margin:0}
+@media(max-width:520px){.voice-modes{grid-template-columns:repeat(2,1fr)}.voice-head{align-items:flex-start}.voice-core{width:60px;height:60px}.voice-lab .fish-row{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.voice-lab:before{animation:none}}
+/* Desktop gets a more spacious control cockpit */
+body.device-desktop main{max-width:1180px}body.device-desktop .g2{grid-template-columns:repeat(3,1fr)}body.device-desktop #sf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}body.device-desktop #sf h3,body.device-desktop #sf .voiceDock{grid-column:1/-1}body.device-desktop .voice-lab{grid-column:1/-1}
+</style>
+
+<style>
+.hs-live{margin-top:5px;font:600 .53rem/1 Orbitron,monospace;letter-spacing:.12em;color:var(--mute);opacity:.82}
+.hs-live span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ok);box-shadow:0 0 9px var(--ok);margin-right:5px;vertical-align:1px}
+
+/* =========================================================
+   FUTURE CAMPUS UI v3 — motion, HUD, learning telemetry
+   ========================================================= */
+:root{--scan:rgba(86,237,255,.06);--hud:rgba(8,18,42,.62)}
+body:before{animation:gridDrift 9s linear infinite,gridPulse 4s ease-in-out infinite alternate}
+body:after{opacity:.10;animation:scanMove 7s linear infinite}
+@keyframes gridDrift{to{background-position:44px 44px}}
+@keyframes gridPulse{from{opacity:.38}to{opacity:.82}}
+@keyframes scanMove{from{transform:translateY(-10px)}to{transform:translateY(10px)}}
+header:before{content:"";position:absolute;left:16px;right:16px;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--cy),var(--mg),transparent);box-shadow:0 0 18px var(--cy);animation:hudLine 3s ease-in-out infinite}
+@keyframes hudLine{0%,100%{opacity:.25;transform:scaleX(.35)}50%{opacity:1;transform:scaleX(1)}}
+.card{position:relative;overflow:hidden;transform:translateZ(0)}
+.card:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0 42%,rgba(255,255,255,.045) 48%,transparent 54%);transform:translateX(-120%);animation:sheen 7s ease-in-out infinite}
+@keyframes sheen{0%,55%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+section:not(.hide) .card{animation:cardIn .55s cubic-bezier(.16,1,.3,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px) scale(.97);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+button{box-shadow:inset 0 0 0 1px rgba(255,255,255,.015)}
+button:hover{box-shadow:0 0 0 1px var(--cy),0 0 22px rgba(86,237,255,.18);transform:translateY(-2px)}
+button:active{transform:translateY(0) scale(.97)}
+.primary{background:linear-gradient(100deg,var(--cy2),var(--cy),var(--mg));background-size:200% 100%;animation:buttonFlow 4s ease-in-out infinite}
+@keyframes buttonFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.opt{position:relative;isolation:isolate}
+.opt:after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--cy),var(--mg));transform:scaleY(0);transition:transform .2s;transform-origin:center}
+.opt:hover:after{transform:scaleY(1)}
+.opt.good{box-shadow:0 0 28px rgba(81,247,170,.2),inset 0 0 25px rgba(81,247,170,.06)}
+.opt.bad{box-shadow:0 0 28px rgba(255,95,120,.2)}
+.tile{background:linear-gradient(145deg,rgba(86,237,255,.06),rgba(255,79,196,.05));transition:transform .25s,box-shadow .25s}
+.tile:hover{transform:translateY(-4px);box-shadow:0 14px 35px rgba(0,0,0,.2),0 0 22px rgba(86,237,255,.10)}
+.ring{animation:ringPulse 3s ease-in-out infinite}
+@keyframes ringPulse{50%{filter:drop-shadow(0 0 15px rgba(86,237,255,.22));transform:scale(1.015)}}
+.wv i{box-shadow:0 0 8px var(--cy)}
+body.talk header h1{animation:voiceGlow 1.2s ease-in-out infinite alternate}
+@keyframes voiceGlow{to{filter:drop-shadow(0 0 24px var(--mg))}}
+#er:not(.hide){animation:alertIn .35s cubic-bezier(.16,1,.3,1)}
+@keyframes alertIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+#subs button,#gr button{transition:all .25s cubic-bezier(.16,1,.3,1)}
+#subs button:not(:disabled):hover,#gr button:hover{letter-spacing:.02em}
+@media(max-width:560px){main{padding-left:12px;padding-right:12px}.card{border-radius:18px}.row{gap:7px}.tile b{font-size:1.25rem}}
+@media(prefers-reduced-motion:reduce){body:before,body:after,header:before,.card:before,.primary,.ring{animation:none!important}button:hover{transform:none}}
+
+.voiceDock{margin:10px 0 14px;padding:13px;border:1px solid rgba(86,237,255,.25);border-radius:16px;background:linear-gradient(135deg,rgba(86,237,255,.06),rgba(255,79,196,.05));display:grid;gap:4px}.voiceDock b{font:700 .72rem Orbitron,sans-serif;letter-spacing:.15em;color:var(--cy)}.voiceDock span,.voiceDock small{color:var(--mute);font-size:.82rem}
+
+/* Hardcore School vNext — compact UI/font patch */
+:root{--ui-font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--display-font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+html{font-size:16px!important}
+body{font-family:var(--ui-font)!important;font-size:15px!important;line-height:1.42!important;letter-spacing:0!important}
+h1,h2,h3,h4,.voice-title,.voice-kicker,.panel-kicker,.tile b,.big{font-family:var(--display-font)!important}
+h1{font-size:1.28rem!important;letter-spacing:.025em!important}
+.card{border-radius:16px!important;padding:14px!important;margin-bottom:10px!important;box-shadow:0 8px 28px rgba(0,0,0,.16)!important}
+section .card>h2:first-child{font-size:.78rem!important;letter-spacing:.08em!important;margin:.15rem 0 .45rem!important}
+p{margin:.45rem 0 .75rem!important}
+button{min-height:42px!important;padding:9px 14px!important;border-radius:12px!important;font-size:.9rem!important}
+input,select,textarea{font-family:var(--ui-font)!important;font-size:.9rem!important;border-radius:10px!important}
+.badge{font-size:.68rem!important;padding:3px 8px!important}
+.q{font-size:1.05rem!important;line-height:1.48!important;padding:5px 0 8px!important}
+.tile{border-radius:12px!important;padding:8px!important}
+.tile b{font-size:1.25rem!important}
+.ring{width:132px!important;height:132px!important}
+.ring .big{font-size:1.35rem!important}
+nav button{min-height:52px!important;font-size:.62rem!important}
+nav button b{font-size:1rem!important;width:36px!important}
+.voice-lab{padding:12px!important;border-radius:16px!important}
+.voice-title{font-size:1rem!important;letter-spacing:.01em!important}
+.voice-sub{font-size:.78rem!important;line-height:1.35!important}
+.voice-modes{gap:6px!important;margin:10px 0!important}
+.voice-mode{padding:8px 5px!important;border-radius:11px!important;min-height:50px!important;font-size:.68rem!important}
+.voice-status{padding:8px 10px!important;border-radius:11px!important;font-size:.72rem!important}
+.voice-actions{gap:6px!important;margin-top:7px!important}
+.voice-tip{font-size:.62rem!important;margin-top:6px!important}
+.voiceDock{margin:7px 0 10px!important;padding:9px!important;border-radius:12px!important}
+.voiceDock b{font-size:.62rem!important}
+body.sp{font-size:20px!important}body.sp button{min-height:52px!important;font-size:1rem!important}body.sp .q{font-size:1.35rem!important}
+@media(max-width:560px){main{padding-left:9px!important;padding-right:9px!important}.card{padding:12px!important;border-radius:14px!important}.voice-modes{grid-template-columns:repeat(2,1fr)!important}header{padding:8px 10px!important}}
+
+
+/* Hardcore School — focused header cleanup */
+header.hs-header{
+ position:sticky!important;top:0!important;z-index:20!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
+ align-items:center!important;gap:14px!important;
+ min-height:58px!important;box-sizing:border-box!important;
+ margin:-18px -16px 14px!important;padding:8px 14px!important;
+ background:linear-gradient(180deg,rgba(3,6,17,.96),rgba(3,6,17,.78))!important;
+ border-bottom:1px solid rgba(86,237,255,.12)!important;
+ backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important
+}
+:root[data-theme="light"] header.hs-header{background:linear-gradient(180deg,rgba(234,243,255,.97),rgba(234,243,255,.82))!important}
+header.hs-header>div:first-child{padding-left:0!important}
+header.hs-header>div:first-child::before{content:none!important}
+.hs-brand{display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important}
+.hs-mark{width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:9px!important;display:grid!important;place-items:center!important;font:800 .66rem Orbitron,sans-serif!important;color:#03101d!important;background:linear-gradient(135deg,var(--cy),var(--mg))!important;box-shadow:0 0 18px rgba(86,237,255,.24),inset 0 0 0 1px rgba(255,255,255,.4)!important}
+.hs-brand-copy{min-width:0!important}
+header.hs-header h1{font-size:1.05rem!important;line-height:1.05!important;letter-spacing:.055em!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin:0!important}
+header.hs-header .tag{font-size:.5rem!important;line-height:1.1!important;letter-spacing:.17em!important;margin:3px 0 0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+header.hs-header .tag::before{content:none!important}
+.hs-header-status{display:flex!important;align-items:center!important;gap:7px!important;white-space:nowrap!important}
+.hs-live{display:inline-flex!important;align-items:center!important;gap:5px!important;font-size:.56rem!important;letter-spacing:.1em!important;color:var(--mute)!important}
+.hs-live>span{width:5px!important;height:5px!important;border-radius:50%!important;background:var(--ok)!important;box-shadow:0 0 8px var(--ok)!important}
+header.hs-header .badge{font-size:.54rem!important;padding:4px 7px!important;white-space:nowrap!important}
+.hs-header-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:5px!important;white-space:nowrap!important}
+.hs-header-actions .wv{height:16px!important}
+.hs-header-actions button{min-height:34px!important;height:34px!important;padding:6px 9px!important;border-radius:9px!important;font-size:.7rem!important}
+.hs-header-actions #dm{display:inline-flex!important;align-items:center!important;gap:5px!important}
+.hs-header-actions #th{width:34px!important;height:34px!important;padding:0!important}
+.hs-header-actions #th::after{font-size:.9rem!important}
+@media(max-width:700px){
+ header.hs-header{grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important;padding:7px 10px!important;margin:-18px -9px 12px!important;min-height:54px!important}
+ .hs-header-status{display:none!important}
+ .hs-header-actions{gap:4px!important}
+ .hs-header-actions .wv{display:none!important}
+ .hs-header-actions #dm{font-size:0!important;width:34px!important;justify-content:center!important;padding:0!important}
+ .hs-header-actions #dm .mode-icon{font-size:.9rem!important}
+ header.hs-header h1{font-size:.9rem!important}
+ header.hs-header .tag{font-size:.44rem!important;letter-spacing:.12em!important}
+ .hs-mark{width:30px!important;height:30px!important;flex-basis:30px!important;font-size:.58rem!important}
+}
+@media(max-width:390px){
+ header.hs-header .tag{display:none!important}
+ .hs-header-actions #cl{font-size:0!important;width:34px!important;padding:0!important}
+ .hs-header-actions #cl:first-letter{font-size:.85rem!important}
+}
+
+</style>
+</head>
+<body>
+<noscript><p style="padding:16px;color:#fff">Please turn on JavaScript to use Hardcore School.</p></noscript>
+<main>
+<header class="hs-header">
+ <div class="hs-brand">
+  <div class="hs-mark" aria-hidden="true">HS</div>
+  <div class="hs-brand-copy"><h1>Hardcore School</h1><div class="tag" id="tg">Future learning network</div></div>
+ </div>
+ <div class="hs-header-status"><span class="hs-live"><span></span> ONLINE</span><span class="badge" id="vs" aria-live="polite">Voice on</span></div>
+ <div class="hs-header-actions">
+  <span class="wv" id="wv" aria-hidden="true"><i></i><i></i><i></i></span>
+  <button id="cl" class="hide" aria-label="Close and go back">&#10005; Close</button>
+  <button id="dm" class="device-switch" aria-label="Change device layout" title="Change device layout"><span class="mode-icon">▣</span><span id="dml">Auto</span></button>
+  <button id="th" aria-label="Switch dark or light mode">Theme</button>
+ </div>
+</header>
+<div id="er" class="fb hide" role="alert" style="border-color:var(--bad)"></div>
+
+<section id="home">
+ <div class="card">
+  <div class="row"><h2 style="font-size:1.1rem">How do you learn?</h2><span class="badge" id="rk"></span></div>
+  <div class="row" role="group" aria-label="Choose how you want to learn" style="margin:10px 0"><button id="mn" aria-pressed="true" style="flex:1">Normal learning (N)</button><button id="ms" aria-pressed="false" style="flex:1">Special education (S)</button></div>
+  <div class="fb" id="homeInfoNote">Application help, usage instructions and developer information are available in Settings → About &amp; Help.</div>
+ </div>
+ <div class="card"><h2 style="font-size:1.1rem">Choose your grade</h2><p>Choose your grade first. Quiz mode shows your subjects. Learning gives you the AI and real online teachers.</p><div class="grid g2" id="gr" role="group" aria-label="Grade"></div></div>
+ <div class="card hide Q" id="sbc"><h2 style="font-size:1.1rem" id="sjh"></h2><p>Quiz mode: each question is read aloud. Answer before the timer runs out.</p><button class="primary" id="dc" style="width:100%;margin-bottom:10px">Daily challenge: 5 mixed questions</button><div class="grid" id="subs"></div></div>
+ <div class="card L"><h2 style="font-size:1.1rem">Learning</h2><p>Choose your grade above, then choose how you want to learn.</p><div class="grid"><button class="primary" id="vt">Learn with AI</button><button id="mt">Online real teacher</button></div><p>Learning with AI is free for one week in each grade. Real teacher requests on WhatsApp: 3 free, then paid.</p></div>
+ <div class="card Q"><h2 style="font-size:1.1rem">My progress</h2><div class="grid g2" id="stt" style="margin-top:10px"></div></div>
+ <div class="card Q"><h2 style="font-size:1.1rem">Scoreboard</h2><ol id="sb"></ol></div>
+</section>
+
+<section id="set" class="hide"><div class="card"><h2 style="font-size:1.1rem">Settings</h2><div class="voice-lab" id="voiceLab"><div class="voice-head"><div><div class="voice-kicker">VOICE LAB</div><div class="voice-title">Voice Control</div><div class="voice-sub">Pick the sound source. Your API secret never belongs in this page.</div></div><div class="voice-core"><span class="wv" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></div></div><div class="voice-modes" id="voiceModes"><button type="button" class="voice-mode" data-engine="" aria-pressed="false"><strong>Auto</strong><span>Best available</span></button><button type="button" class="voice-mode" data-engine="google" aria-pressed="false"><strong>Google</strong><span>Chrome / Android</span></button><button type="button" class="voice-mode" data-engine="device" aria-pressed="false"><strong>Device</strong><span>Phone voices</span></button><button type="button" class="voice-mode" data-engine="fish" aria-pressed="false"><strong>Fish AI</strong><span>Natural cloud</span></button></div><div class="voice-status"><span class="voice-dot" id="voiceDot"></span><span id="voiceLabStatus">Voice system ready</span></div><div class="voice-actions"><button type="button" id="voiceLabTest" class="primary">▶ Test selected voice</button><button type="button" id="voiceLabRefresh">↻ Scan voices</button></div><div class="fish-row"><input id="voiceLabEndpoint" type="text" placeholder="Secure proxy URL (https://…)" autocomplete="off"><input id="voiceLabRef" type="text" placeholder="Fish voice reference ID" autocomplete="off"></div><div class="voice-tip">Security patch: the browser sends text only to your configured proxy. The Fish API key stays server-side. Use HTTPS and an origin allow-list before deploying publicly.</div></div><div id="sf"></div><div class="row" style="margin:10px 0"><button id="tv">Test voice</button><button id="rv2">Refresh voices</button><button id="ts2">Phone speech settings</button></div>
+<div class="settings-panel" id="aboutPanel"><div class="panel-kicker">SYSTEM DOCUMENTATION</div><h3>About Hardcore School</h3><p>Hardcore School is a learning and revision application designed to organise lessons, quizzes, revision, accessibility tools and learner support in one place.</p><details><summary>How to use the application</summary><div class="about-copy">Choose a grade, select a subject, then choose Learning or Quiz mode. In Quiz mode, answer the options before the timer ends. Use Read again when you want the current question repeated. Use 50/50 when available. At the end, review mistakes and use the revision reader. Voice controls, timing, accessibility, themes, sounds and other preferences are controlled from Settings.</div></details><details><summary>Accessibility &amp; voice</summary><div class="about-copy">The browser's available speech voices are listed in Settings. Select a voice, test it, refresh the list when a phone/browser adds voices, and adjust speed, pitch and volume. The application cannot expose a voice that the browser or operating system does not provide.</div></details><details><summary>Developer information</summary><div class="about-copy" id="developerInfo"></div></details></div>
+<div class="settings-panel support-panel" id="supportPanel"><div class="panel-kicker">DEVELOPER SUPPORT</div><h3>Contact the Developer</h3><p>Use this section for update requests, questions, bug reports, debugging, technical problems or help assistance.</p><label for="devEmail">Developer email address</label><input id="devEmail" type="email" placeholder="Enter developer email address"><label for="devFacebook">Developer Facebook link</label><input id="devFacebook" type="url" value="https://www.facebook.com/share/19hkDuU8X8/" placeholder="https://www.facebook.com/share/19hkDuU8X8/"><label for="devWhatsApp">Developer WhatsApp link or number</label><input id="devWhatsApp" type="text" placeholder="WhatsApp number or https://wa.me/...">
+<div class="support-actions"><button id="saveSupport" class="primary">Save contact details</button><button id="emailDev">Email developer</button><button id="waDev">WhatsApp developer</button><button id="fbDev">Facebook developer</button></div><p class="small-note">Contact details are stored on this device until you change them. Email opens your device/browser email application; WhatsApp and Facebook open their respective services.</p></div><div class="device-mode-panel" id="deviceModePanel"><div class="panel-kicker">DEVICE INTERFACE</div><h3>Phone / Desktop Mode</h3><p>Choose how Hardcore School should arrange its interface. Auto detects the screen; Phone keeps controls compact, while Desktop uses the larger computer layout.</p><div class="device-mode-grid" role="group" aria-label="Device interface mode"><button id="modeAuto" type="button"><b>Auto</b><small>Detect screen</small></button><button id="modePhone" type="button"><b>Phone</b><small>Mobile layout</small></button><button id="modeDesktop" type="button"><b>Desktop</b><small>Computer layout</small></button></div><div class="device-status"><span>Current layout</span><b id="deviceStatus">Auto</b></div></div><button class="primary" id="sv" style="width:100%;margin-top:12px">Save and go back</button><button id="sr" style="width:100%;margin-top:10px">Clear scoreboard</button><button id="sx" style="width:100%;margin-top:10px">Cancel and close</button></div></section>
+
+<section id="tch" class="hide">
+ <div class="card" id="tcs"><h2 style="font-size:1.1rem" id="tn"></h2><p id="td"></p><div class="grid" id="ts"></div></div>
+ <div class="card" id="ask"><h2 style="font-size:1.1rem">Ask the AI</h2><p>Type or speak any question. The app answers from its lessons. If the answer is not there, it opens the AI you choose, with your question ready.</p>
+  <input type="text" id="aq" placeholder="Type your question" aria-label="Your question">
+  <div class="row" style="margin-bottom:10px"><button id="mic">Speak</button><button class="primary" id="ak" style="flex:1">Ask AI</button></div>
+  <label for="asj">Subject (helps the AI teach better)</label><select id="asj"></select><label for="aiw">Which AI to use</label><select id="aiw"></select><label for="aimw">Open the AI in</label><select id="aimw"><option value="web">Browser (website)</option><option value="app">The AI app installed on my phone</option></select><button id="ak2" style="width:100%">Ask this AI now</button></div>
+ <div class="card hide" id="lc"><span class="badge" id="lp"></span><p class="q" id="lt"></p><div class="row"><button id="lb">Back</button><button id="lai">Explain more with AI</button><button class="primary" id="ln">Next</button><button id="lx">Close lesson</button></div></div>
+ <button id="t2r" style="width:100%;margin-bottom:10px">Prefer a real teacher? Request an online real teacher</button>
+ <button id="tbk" style="width:100%">Back to Learning</button>
+</section>
+
+<section id="rt" class="hide">
+ <div class="card"><h2 style="font-size:1.1rem">Match an online teacher</h2><p>Real teachers give live lessons. Tell us what you need and we will help match you.</p>
+  <label for="rn">Your name</label><input type="text" id="rn" autocomplete="name">
+  <label for="rg">Grade</label><select id="rg"></select>
+  <label for="rs">Subject</label><input type="text" id="rs" placeholder="For example Mathematics">
+  <label for="rpf">Preferred platform</label><select id="rpf"></select>
+  <div class="fb" id="rqi" aria-live="polite"></div><button class="primary" id="rq" style="width:100%;margin-top:10px">Request a match on WhatsApp</button><button class="primary hide" id="pay" style="width:100%;margin-top:10px">Ask on WhatsApp how much to pay</button></div>
+ <div class="card"><h2 style="font-size:1.1rem">Live lesson links</h2><p>Paste the links your real teacher gives you. Tap Open to join.</p><div id="pl"></div><button class="primary" id="ps" style="width:100%;margin-top:10px">Save links</button></div>
+ <button id="rbk" style="width:100%">Back to home</button>
+</section>
+
+<section id="quiz" class="hide">
+ <div class="card">
+  <div class="row"><span class="badge" id="pg"></span><span class="badge" id="sc"></span><span class="badge" id="st"></span></div>
+  <div class="bar" aria-hidden="true"><i id="tb"></i></div>
+  <div class="row"><span id="tl" class="badge"></span><span><button id="fh">50/50 (1)</button> <button id="rp">Read again</button> <button id="qq">Quit</button></span></div>
+  <p class="q" id="qt" tabindex="-1"></p>
+  <div id="ans"></div>
+  <div class="fb hide" id="fb" role="status" aria-live="assertive"></div>
+  <button class="primary hide" id="nx" style="width:100%;margin-top:12px">Next question</button>
+ </div>
+</section>
+
+<section id="end" class="hide">
+ <div class="card">
+  <h2 style="font-size:1.1rem">Results</h2>
+  <div class="ring" id="rg2"><div class="big" id="fs"></div></div>
+  <p id="fm"></p>
+  <h2 style="font-size:1rem;margin-top:14px">Revision time</h2>
+  <ol id="rv"></ol>
+  <div class="grid">
+   <button id="rr">Read revision aloud</button><button id="sh">Share my score on WhatsApp</button>
+   <button class="primary" id="hm">Back to subjects</button>
+  </div>
+ </div>
+</section>
+<footer class="card ow" id="ow"></footer><div class="small-note" style="text-align:center;margin:8px 0 18px">© 2026 Hardcore School · Original interface and UI patch. Fish Audio, Google and browser/OS voice names remain trademarks/services of their respective owners.</div>
+</main>
+<nav id="nav" aria-label="Main"><button id="nvh" class="on"><b>&#8962;</b>Learning</button><button id="nva"><b>&#10022;</b>Quiz mode</button><button id="gs"><b>&#9881;</b>Settings</button></nav>
+
+<script>
+// Add more questions to any subject. MCQ: {q,o:[...],a:index}. One word: {q,a:"answer|other"}.
+const G12={
+"Biology":[
+{q:"Which organelle is the main site of aerobic respiration?",o:["Ribosome","Mitochondrion","Chloroplast","Nucleus"],a:1},
+{q:"Two heterozygous brown-eyed parents, Bb crossed with Bb. What is the chance of a blue-eyed child, bb?",o:["0","One quarter","One half","Three quarters"],a:1},
+{q:"The movement of water from the soil into root hair cells is called?",o:["Diffusion","Active transport","Osmosis","Transpiration"],a:2},
+{q:"Which blood cells carry oxygen?",o:["Red blood cells","White blood cells","Platelets","Plasma"],a:0},
+{q:"Name the green pigment in leaves.",a:"chlorophyll"},
+{q:"Which enzyme in saliva digests starch?",a:"amylase"},
+{q:"What is the basic unit of life?",a:"cell"},
+{q:"Which nutrient is the main source of energy?",o:["Proteins","Carbohydrates","Vitamins","Minerals"],a:1}],
+"Civic Education":[
+{q:"Which arm of government makes laws in Zambia?",o:["Executive","Judiciary","Legislature","Police Service"],a:2},
+{q:"What is the supreme law of Zambia called?",a:"constitution"},
+{q:"Which of these is a civic responsibility of a citizen?",o:["Ignoring elections","Paying taxes","Damaging public property","Avoiding the law"],a:1},
+{q:"What do we call a person who legally belongs to a country?",a:"citizen"},
+{q:"Which body conducts elections in Zambia?",o:["Electoral Commission of Zambia","Zambia Revenue Authority","Anti-Corruption Commission","Zambia Police"],a:0},
+{q:"In which year did Zambia gain independence?",a:"1964"},
+{q:"Which arm of government interprets the law?",o:["Legislature","Executive","Judiciary","Parliament"],a:2},
+{q:"What is Zambia's national law-making house called?",a:"national assembly|assembly|parliament"}],
+"English Language":[
+{q:"Choose the correct word. Neither of the boys ___ present.",o:["were","are","was","have been"],a:2},
+{q:"Which word means the same as abundant?",o:["Scarce","Plentiful","Tiny","Rare"],a:1},
+{q:"Choose the passive form of: The teacher marked the scripts.",o:["The scripts marked the teacher.","The scripts were marked by the teacher.","The scripts are marking the teacher.","The teacher was marked by the scripts."],a:1},
+{q:"Give the plural of child.",a:"children"},
+{q:"Give the opposite of ancient.",a:"modern|new"},
+{q:"Which of these words is a noun?",o:["Quickly","Happiness","Beautiful","Run"],a:1},
+{q:"Spell correctly the word: r, e, c, i, e, v, e.",a:"receive"},
+{q:"She ___ to school every day.",o:["go","goes","going","gone"],a:1}]
+};
+const mk=a=>a.map(x=>typeof x[1]==="string"?{q:x[0],a:x[1]}:{q:x[0],o:x[1],a:x[2]});
+const LV={
+"Grade 5":{"English Language":mk([["Choose the correct word. The girls ___ playing netball.",["is","are","was","be"],1],["Give the opposite of big.","small|little"],["Which word is a verb?",["Table","Jump","Green","Happy"],1]]),
+"Integrated Science":mk([["What do plants need to make food?",["Sunlight","Plastic","Sand","Smoke"],0],["Which organ do we use to see?","eye|eyes"],["What state of matter is rain water?",["Solid","Liquid","Gas","Fire"],1]])},
+"Grade 6":{"English Language":mk([["Choose the correct sentence.",["He don't like fish.","He doesn't like fish.","He not like fish.","He no likes fish."],1],["Give the plural of tooth.","teeth"],["Which word is an adjective?",["Slowly","Beautiful","Sing","Under"],1]]),
+"Integrated Science":mk([["Which part of a plant takes in water from the soil?",["Leaf","Root","Flower","Fruit"],1],["What force pulls objects toward the Earth?","gravity"],["Which of these is a mammal?",["Frog","Cow","Lizard","Fish"],1]])},
+"Grade 7":{"English Language":mk([["Choose the correct tense. Yesterday, we ___ to the market.",["go","goes","went","going"],2],["Give the past tense of write.","wrote"],["Which punctuation mark ends a question?",["Full stop","Comma","Question mark","Colon"],2]]),
+"Integrated Science":mk([["Which gas do humans need to breathe in?",["Oxygen","Nitrogen","Helium","Carbon monoxide"],0],["What is the change from liquid water to water vapour called?","evaporation"],["Which of these conducts electricity well?",["Wood","Copper","Plastic","Rubber"],1]])},
+"Form 1":{"English Language":mk([["Choose the correct word. She is ___ than her sister.",["tall","taller","tallest","more tall"],1],["Give the plural of city.","cities"],["Which word is a conjunction?",["But","Quickly","House","Blue"],0]]),
+"Biology":mk([["Which instrument is used to view very small cells?",["Telescope","Microscope","Thermometer","Periscope"],1],["What is the process plants use to make food from light called?","photosynthesis"],["Which part of the cell controls its activities?",["Nucleus","Cell wall","Vacuole","Cytoplasm"],0]])},
+"Form 2":{"English Language":mk([["Choose the correct word. If it rains, we ___ stay home.",["will","would have","had","are"],0],["Give a word that means the opposite of generous.","stingy|mean|selfish"],["Which sentence is in the passive voice?",["The dog chased the cat.","The cat was chased by the dog.","The dog is chasing the cat.","The dog will chase the cat."],1]]),
+"Biology":mk([["Which blood vessels carry blood away from the heart?",["Veins","Arteries","Capillaries","Nerves"],1],["What is the release of energy from food in cells called?","respiration"],["Which vitamin prevents scurvy?",["Vitamin A","Vitamin C","Vitamin D","Vitamin K"],1]])},
+"Grade 10":{"English Language":mk([["Choose the correct word. The committee ___ made its decision.",["have","has","are","were"],1],["Give the adverb form of quick.","quickly"],["What do we call a comparison using like or as?",["Metaphor","Simile","Irony","Idiom"],1]]),
+"Biology":mk([["Which molecule carries genetic information?",["DNA","ATP","Glucose","Lipid"],0],["What is the loss of water vapour from leaves called?","transpiration"],["Which organ produces insulin?",["Liver","Pancreas","Kidney","Stomach"],1]])},
+"Grade 11":{"English Language":mk([["Choose the correct word. Between you and ___, the answer is wrong.",["I","me","myself","we"],1],["Give the noun form of decide.","decision"],["What is the main idea of a paragraph usually called?",["Topic sentence","Footnote","Title page","Caption"],0]]),
+"Biology":mk([["Which type of cell division produces gametes?",["Mitosis","Meiosis","Binary fission","Budding"],1],["What is an organism's genetic makeup called?","genotype"],["Which hormone does the thyroid gland produce?",["Thyroxine","Insulin","Adrenaline","Testosterone"],0]])},
+"Grade 12":G12};
+let lv=null,fifty=1;
+G12["Biology"].push(...mk([["What is the study of how organisms relate to their environment called?","ecology"],["Which part of the brain controls balance and coordination?",["Cerebrum","Cerebellum","Medulla","Hypothalamus"],1],["Which hormone lowers blood glucose level?",["Glucagon","Insulin","Adrenaline","Thyroxine"],1],["What is the male sex cell in animals called?","sperm|sperm cell"],["What is it called when organisms with helpful traits survive and reproduce more?",["Natural selection","Osmosis","Pollination","Fertilisation"],0],["Which cell structure is the site of protein synthesis?","ribosome|ribosomes"],["Which of these is a sexually transmitted infection?",["Gonorrhoea","Malaria","Cholera","Measles"],0]]));
+G12["Civic Education"].push(...mk([["What title does Zambia's Head of State hold?","president"],["Which document lists the rights of Zambian citizens?",["Bill of Rights","Highway Code","Public Health Act","Employment Contract"],0],["What is democracy?",["Rule by one person","Rule by the people","Rule by the army","Rule by the wealthy"],1],["What do we call a person who represents a constituency in the National Assembly?","member of parliament|mp"],["Which right allows citizens to choose their leaders?",["Right to vote","Right to trade","Right to travel","Right to rest"],0],["What is the process of choosing leaders by voting called?","election|elections"],["Which of these is a duty of a good citizen?",["Obey the law","Bribe officials","Cheat in exams","Dodge tax"],0]]));
+G12["English Language"].push(...mk([["Choose the correct spelling.",["Accomodation","Accommodation","Acommodation","Accomadation"],1],["Give the past participle of break.","broken"],["Choose the correct word. The information ___ very useful.",["were","was","are","have been"],1],["Which figure of speech is: The wind whispered through the trees?",["Simile","Personification","Hyperbole","Alliteration"],1],["Give one word for a person who writes poems.","poet"],["Choose the correct word. He is good ___ mathematics.",["in","at","on","for"],1],["Give the opposite of victory.","defeat|loss"]]));
+G12["Computer Studies"]=mk([["What does CPU stand for?","central processing unit"],["Which of these is an input device?",["Monitor","Keyboard","Printer","Speaker"],1],["Which of these is an operating system?",["Windows","Excel","Chrome","Word"],0],["What does RAM stand for?","random access memory"],["Which unit of data is the smallest?",["Kilobyte","Byte","Megabyte","Gigabyte"],1],["What is the binary number 101 in decimal?",["3","4","5","6"],2],["What is a program that protects a computer from malware called?","antivirus|anti-virus"],["Which device connects a network to the internet?",["Router","Scanner","Mouse","Webcam"],0],["What does URL stand for?","uniform resource locator"],["Which software is used to make spreadsheets?",["Microsoft Excel","Paint","Notepad","VLC"],0],["What is a set of step-by-step instructions to solve a problem called?","algorithm"],["Which storage device has no moving parts?",["Hard disk","SSD","Floppy disk","CD"],1],["What is unwanted email called?","spam"],["Which of these is an output device?",["Scanner","Microphone","Monitor","Keyboard"],2],["Which number system uses only 0 and 1?","binary"]]);
+G12["Commerce"]=mk([["What is the exchange of goods and services for money called?","trade"],["Which document lists goods sent to a buyer and the amount due?",["Invoice","Receipt","Cheque","Quotation"],0],["A person who buys goods for their own use is called a ___",["Wholesaler","Consumer","Producer","Retailer"],1],["Who sells goods in small quantities to consumers?","retailer"],["Which of these is a bank service?",["Savings account","Hair braiding","Farming","Tailoring"],0],["What is money paid for borrowing money called?","interest"],["Which business is owned by one person?",["Sole trader","Cooperative","Company","Partnership"],0],["What do we call the regular payment made for insurance?","premium"],["Advertising is used to ___",["Promote products","Print money","Collect taxes","Grow crops"],0],["Who is the middleman between the producer and the retailer?",["Wholesaler","Consumer","Banker","Customer"],0],["What document is given as proof of payment?","receipt"],["Which of these is a factor of production?",["Land","Weather","Music","Holidays"],0],["What do we call goods sold to other countries?","exports|export"],["A partnership has at least ___ owners.",["One","Two","Ten","Twenty"],1],["What is gross profit less expenses called?","net profit"]]);
+G12["Mathematics"]=mk([["Solve: 2x + 5 = 17",["x = 5","x = 6","x = 7","x = 11"],1],["What is 15 percent of 200?","30"],["Simplify: 3/4 + 1/8",["7/8","5/8","1","4/12"],0],["What is the square root of 144?","12"],["What is the area of a circle of radius 7? Use pi = 22/7.",["44","154","22","49"],1],["What is the gradient of the line y = 3x + 2?","3"],["Expand: (x + 3)(x + 2)",["x² + 5x + 6","x² + 6x + 5","x² + 5x + 5","x² + 6"],0],["How many degrees do the angles of a triangle add up to?","180"],["Solve: x² = 49",["x = 7 only","x = 7 or x = -7","x = 49","x = 14"],1],["What is the median of 3, 5 and 9?","5"],["What is log to base 10 of 1000?",["1","2","3","10"],2],["Write 0.25 as a fraction.","1/4"],["What do the interior angles of a quadrilateral add up to?",["180","270","360","540"],2],["What is 2 to the power 5?","32"],["A right-angled triangle has sides 3 and 4. What is the hypotenuse?",["5","6","7","12"],0]]);
+G12["Physics"]=mk([["What is the SI unit of force?",["Joule","Newton","Watt","Pascal"],1],["What is the unit of electric current?","ampere|amp|amps"],["Speed equals distance divided by what?",["Mass","Time","Force","Volume"],1],["What kind of energy does a moving car have?","kinetic"],["Which of these travels fastest?",["Sound","Light","Water waves","Wind"],1],["Which instrument measures electric current?","ammeter"],["Ohm's law says voltage equals ___",["current times resistance","current divided by resistance","resistance divided by current","current plus resistance"],0],["What is the unit of frequency?","hertz|hz"],["Which is a renewable energy source?",["Coal","Solar","Petrol","Diesel"],1],["How does heat mainly travel through solids?",["Conduction","Convection","Radiation","Evaporation"],0],["Mass times acceleration gives what?","force"],["What is the unit of power?",["Watt","Volt","Newton","Metre"],0],["What is the bending of light as it changes medium called?","refraction"],["Which mirror is used as a car's rear-view mirror?",["Convex","Concave","Cylindrical","None"],0],["Which force pulls objects towards the centre of the Earth?","gravity"]]);
+G12["Chemistry"]=mk([["What is the chemical symbol for sodium?","na"],["What is the pH of a neutral solution?",["0","7","14","1"],1],["What is the chemical formula of water?","h2o"],["Which gas turns limewater milky?",["Oxygen","Carbon dioxide","Hydrogen","Nitrogen"],1],["The atomic number of an atom is its number of what?","protons|proton"],["Which of these is a noble gas?",["Neon","Oxygen","Chlorine","Nitrogen"],0],["What do we call a substance that speeds up a reaction without being used up?","catalyst"],["Which acid is found in the stomach?",["Sulphuric acid","Hydrochloric acid","Nitric acid","Citric acid"],1],["Which bond forms when atoms share electrons?",["Ionic","Covalent","Metallic","Hydrogen"],1],["What is the chemical symbol for iron?","fe"],["Rusting needs oxygen and what else?",["Water","Sand","Oil","Sugar"],0],["What process separates a liquid from a solution by boiling and condensing?","distillation"],["What is the formula of carbon dioxide?",["CO","CO2","C2O","O2C"],1],["What are the Group 1 metals called?","alkali metals|alkali"],["Which metal is liquid at room temperature?",["Mercury","Iron","Copper","Zinc"],0]]);
+G12["History"]=mk([["Who was Zambia's first president?","kenneth kaunda|kaunda|kenneth david kaunda"],["Zambia gained independence from which country?",["France","Britain","Portugal","Germany"],1],["What was Northern Rhodesia renamed at independence?","zambia"],["What did the Berlin Conference of 1884 and 1885 deal with?",["Trade wars","Partition of Africa","End of slavery","A world war"],1],["What was the system of racial separation in South Africa called?","apartheid"],["Who led South Africa's first democratic government in 1994?",["Nelson Mandela","Robert Mugabe","Julius Nyerere","Sam Nujoma"],0],["In which year did World War Two end?","1945"],["Which organisation was formed in 1963 to unite African states?",["OAU","SADC","UN","NATO"],0],["Which explorer reached Victoria Falls in 1855?","david livingstone|livingstone"],["The League of Nations was formed after which war?",["World War I","World War II","Cold War","Boer War"],0],["Which party led Zambia to independence?","unip"],["The transatlantic slave trade took Africans to which region?",["Asia","The Americas","Australia","Antarctica"],1],["What do we call the period when European powers took control of African lands?","colonialism|colonisation|colonization"],["Who was Tanzania's first president?",["Julius Nyerere","Kenneth Kaunda","Jomo Kenyatta","Milton Obote"],0],["Which war lasted from 1939 to 1945?","world war two|world war 2|second world war|world war ii"]]);
+G12["Religious Education"]=mk([["Who led the Israelites out of Egypt?","moses"],["How many commandments were given to Moses?",["Five","Seven","Ten","Twelve"],2],["In which town was Jesus born?","bethlehem"],["What is the first book of the Bible?",["Genesis","Exodus","Matthew","Psalms"],0],["How many disciples did Jesus choose?","12|twelve"],["What is the holy book of Islam?",["Quran","Torah","Vedas","Talmud"],0],["Which disciple betrayed Jesus?","judas|judas iscariot"],["The Sermon on the Mount includes which teachings?",["The Beatitudes","Lists of kings","A census","Travel maps"],0],["What is the Muslim pilgrimage to Mecca called?","hajj"],["Who built the ark?",["Noah","Abraham","David","Elijah"],0],["Which Christian festival marks the birth of Jesus?","christmas"],["The Lord's Prayer begins with which words?",["Our Father","Hail Mary","Blessed are","Amen"],0],["Which prophet was swallowed by a big fish?","jonah"],["Which day do Christians remember Jesus rising from the dead?",["Easter","Pentecost","Epiphany","Lent"],0],["What is the fasting month for Muslims called?","ramadan"]]);
+G12["Geography"]=mk([["Which river forms the Victoria Falls?","zambezi"],["Which lake lies on Zambia's northern border?",["Lake Tanganyika","Lake Victoria","Lake Malawi","Lake Chad"],0],["What is the imaginary line at 0 degrees latitude called?","equator"],["Which type of rock forms from cooled magma?",["Igneous","Sedimentary","Metamorphic","Organic"],0],["Which instrument measures rainfall?","rain gauge"],["What is Zambia's main mineral export?",["Copper","Diamonds","Oil","Gold"],0],["What is the capital city of Zambia?","lusaka"],["Which instrument measures air pressure?",["Barometer","Thermometer","Anemometer","Hygrometer"],0],["What is the movement of people from villages to towns called?","rural-urban migration|rural urban migration|urbanisation|urbanization|migration"],["What do we call the layer of gases around the Earth?","atmosphere"],["Which climate has hot wet and cool dry seasons, as in Zambia?",["Tropical wet and dry","Polar","Mediterranean","Desert"],0],["What do we call the number of people per square kilometre?","population density"],["Which hydroelectric dam lies on the Zambezi River?",["Kariba","Aswan","Kainji","Inga"],0],["What is the breaking down of rock where it lies called?","weathering"],["Which is a feature of a river's upper course?",["Steep valley","Wide delta","Large meanders","Flat plain"],0]]);
+LV["Grade 11"]["Religious Education"]=mk([["Who was the first man according to the Bible?","adam"],["In Genesis, how many days did God work before resting?",["Three","Five","Six","Ten"],2],["Which son of Abraham was offered as a sacrifice?","isaac"],["Who was thrown into the lions' den?",["Daniel","Moses","Paul","Peter"],0],["In which town did Jesus grow up?","nazareth"],["The Five Pillars belong to which religion?",["Islam","Hinduism","Buddhism","Christianity"],0],["Who baptised Jesus?","john the baptist|john"],["Who wrote most of the letters in the New Testament?",["Paul","Peter","Mark","Luke"],0],["What is the Muslim place of worship called?","mosque"],["With what did Jesus feed the five thousand?",["Five loaves and two fish","Ten loaves","Only wine","Only fruit"],0],["What is the last book of the Bible?","revelation|revelations"],["What are the first four books of the New Testament called?",["Gospels","Epistles","Prophets","Psalms"],0],["Who was the mother of Jesus?","mary"],["Which prophet challenged the prophets of Baal on Mount Carmel?",["Elijah","Isaiah","Amos","Hosea"],0],["On which day do most Christians hold their main weekly worship?","sunday"]]);
+LV["Grade 11"]["Mathematics"]=mk([["Factorise: x² - 9",["(x - 3)(x + 3)","(x - 9)(x + 1)","(x - 3)²","x(x - 9)"],0],["Write 3/5 as a percentage.","60|60%"],["Solve: 3x - 4 = 11",["x = 3","x = 5","x = 7","x = 15"],1],["What do angles on a straight line add up to?","180"],["Simplify: 2³ × 2²",["2⁵","2⁶","4⁵","2¹"],0],["What is the mean of 2, 4, 6 and 8?","5"],["What is the volume of a cube with side 3?",["9","18","27","81"],2],["What do we call a triangle with two equal sides?","isosceles"],["Solve: x² - 5x + 6 = 0",["x = 2 or 3","x = 1 or 6","x = -2 or -3","x = 5 or 1"],0],["What is the perimeter of a rectangle 5 cm by 3 cm?","16|16cm|16 cm"],["If y = 2x and x = 4, what is y?",["6","8","2","16"],1],["What is 7 squared?","49"],["What is the simple interest on K1000 at 10 percent for 2 years?",["K100","K200","K1200","K20"],1],["How many sides does a hexagon have?","6|six"],["What is the probability of getting a head when a fair coin is tossed?",["1/2","1/3","1","0"],0]]);
+LV["Grade 11"]["Commerce"]=mk([["What do we call a person who starts and runs a business?","entrepreneur"],["Which document asks a seller for prices?",["Enquiry","Receipt","Invoice","Credit note"],0],["What do we call buying now and paying later?","credit"],["Which of these is transport by water?",["Ship","Lorry","Train","Aeroplane"],0],["What is the money an owner puts into a business called?","capital"],["Which body regulates banks in Zambia?",["Bank of Zambia","ZRA","ZESCO","ZAMTEL"],0],["What is the tax added to goods and services in Zambia called?","vat|value added tax"],["What does warehousing do?",["Stores goods","Prints money","Teaches skills","Grows crops"],0],["What is the fall in value of an asset over time called?","depreciation"],["What do we call the things a business owns?",["Assets","Liabilities","Expenses","Interest"],0],["What do we call money that a business owes?","liabilities|liability|debt|debts"],["A cheque is drawn on what?",["A bank account","A warehouse","A ship","A market"],0],["What do we call a person who takes out an insurance policy?","policyholder|insured"],["Mobile money is an example of what?",["Electronic payment","Barter","Smuggling","Rationing"],0],["What do we call trading goods for goods without using money?","barter"]]);
+LV["Grade 11"]["English Language"]=mk([["Choose the correct word. Between you and ___, the answer is wrong.",["I","me","myself","we"],1],["Give the noun form of decide.","decision"],["What is the main idea of a paragraph usually called?",["Topic sentence","Footnote","Title page","Caption"],0],["Choose the correct sentence.",["Neither of them were ready.","Neither of them was ready.","Neither of them are ready.","Neither of them be ready."],1],["Give the plural of criterion.","criteria"],["What do we call a word with the opposite meaning?",["Antonym","Synonym","Homonym","Acronym"],0],["Give the past tense of lead.","led"],["Choose the correct word. I look forward to ___ you.",["see","seeing","saw","seen"],1],["Which punctuation mark shows possession?","apostrophe"],["He is as brave as a lion. What figure of speech is this?",["Simile","Metaphor","Proverb","Idiom"],0],["Give one word for a person new to a skill.","beginner|novice"],["Choose the correct word. She has lived here ___ 2015.",["for","since","from","at"],1],["Give the adjective form of danger.","dangerous"],["Choose the reported speech for: He said, I am tired.",["He said that he was tired.","He said that I am tired.","He said he is tired me.","He says he tired."],0],["What do we call the main character of a story?","protagonist"]]);
+{const P=["Mathematics","Social Studies","Creative and Technology Studies","Religious Education"],F=["Mathematics","Integrated Science","Civic Education","Geography","History"],S=["Mathematics","Chemistry","Physics","Civic Education","Geography","History","Computer Studies","Commerce","Religious Education"];
+const M={"Grade 5":P,"Grade 6":P,"Grade 7":P,"Form 1":F,"Form 2":F,"Grade 10":S,"Grade 11":S,"Grade 12":S};
+Object.keys(M).forEach(l=>M[l].forEach(n=>{LV[l][n]=LV[l][n]||[]}))}
+const T=t=>mk(t.split("\n").filter(Boolean).map(l=>{const p=l.split("~");return p.length>2?[p[0],p[1].split(";"),+p[2]]:[p[0],p[1]]}));
+const PP={"Mathematics":`What is 8 + 7?~15
+What is 6 × 7?~42
+What is half of 50?~25
+Which number is even?~7;12;9;15~1
+How many minutes are in one hour?~60
+What is 100 - 45?~55`,"Social Studies":`What is the capital city of Zambia?~lusaka
+Which river forms Victoria Falls?~zambezi
+Who was Zambia's first president?~kenneth kaunda|kaunda
+Which colour is not on Zambia's flag?~Green;Orange;Blue;Black~2
+In which year did Zambia become independent?~1964
+Which of these is a natural resource?~Copper;Plastic;Glass;Paper~0`,"Creative and Technology Studies":`Which tool is used for cutting wood?~Saw;Spoon;Brush;Needle~0
+Which material comes from a tree?~Wood;Glass;Iron;Plastic~0
+Which tool is used for sewing?~needle
+Name one primary colour.~red|blue|yellow
+Which item protects your hands when working?~Gloves;Scarf;Hat;Belt~0
+What do we call a drawing made with paint?~painting|a painting`,"Religious Education":`Who built the ark?~Noah;Moses;David;Paul~0
+In which town was Jesus born?~bethlehem
+Who led the Israelites out of Egypt?~moses
+What is the holy book of Christians?~Bible;Quran;Torah;Vedas~0
+What is the holy book of Islam?~quran|koran
+Which festival celebrates the birth of Jesus?~christmas`};
+const FF={"Mathematics":`Solve: x + 9 = 20~11
+What is 12 × 12?~144
+What is 3² + 4²?~25
+Which of these is a prime number?~9;15;17;21~2
+What is 25 percent of 80?~20
+What do the angles of a triangle add up to?~180`,"Integrated Science":`What is the chemical symbol for oxygen?~o
+Which planet is closest to the Sun?~mercury
+Which of these conducts heat well?~Metal;Wood;Plastic;Rubber~0
+What is the unit of force?~newton|newtons
+Which gas do plants take in for photosynthesis?~Carbon dioxide;Oxygen;Nitrogen;Helium~0
+What do we call animals that eat only plants?~herbivores|herbivore`,"Civic Education":`What do we call the rules made by government?~laws|law
+At what age can a Zambian vote?~18|eighteen
+Which arm of government enforces laws?~Executive;Judiciary;Legislature;Media~0
+What is the right to choose leaders by voting called?~suffrage|voting
+Which of these is a duty of a citizen?~Paying taxes;Littering;Cheating;Fighting~0
+Complete the motto: One Zambia, one ___~nation`,"Geography":`Which is the largest continent?~Asia;Africa;Europe;Australia~0
+What is the capital of Zambia?~lusaka
+Which instrument measures temperature?~thermometer
+What is the imaginary line at 0 degrees latitude?~equator
+In which direction does the sun rise?~east
+What do we call a large stream of flowing water?~river`,"History":`Who was Zambia's first president?~kenneth kaunda|kaunda
+In which year did Zambia gain independence?~1964
+Who reached Victoria Falls in 1855?~david livingstone|livingstone
+What was Zambia called before independence?~northern rhodesia
+Which continent was divided at the Berlin Conference?~Africa;Asia;Europe;America~0
+Which country colonised Zambia?~Britain;France;Portugal;Germany~0`};
+
+/* =========================================================
+   ECZ-ALIGNED EXTENSION BANK — ORIGINAL PRACTICE QUESTIONS
+   Built around topics listed in Zambia senior-secondary syllabi.
+   These are practice questions, not copied ECZ examination items.
+   ========================================================= */
+const ECZX={
+"Grade 10":{
+ "Biology":mk([
+  ["Which process moves water molecules across a partially permeable membrane from a region of higher water potential to lower water potential?",["Diffusion","Osmosis","Active transport","Transpiration"],1],
+  ["Which structure controls the opening and closing of a stoma?",["Guard cells","Root hairs","Xylem vessels","Phloem cells"],0],
+  ["Which blood component is mainly responsible for clotting?",["Red blood cells","Platelets","Plasma","Lymphocytes"],1],
+  ["Which part of the mammalian skeleton protects the spinal cord?",["Rib cage","Vertebral column","Pectoral girdle","Pelvic girdle"],1],
+  ["What is the main function of the villi in the small intestine?",["Produce bile","Increase surface area for absorption","Store faeces","Pump blood"],1],
+  ["Which organ removes urea from the blood?",["Heart","Kidney","Lung","Pancreas"],1],
+  ["Which type of nutrition is shown when a green plant makes organic food from carbon dioxide and water?",["Holozoic","Autotrophic","Saprophytic","Parasitic"],1],
+  ["Which gas is released during photosynthesis?",["Carbon dioxide","Oxygen","Nitrogen","Hydrogen"],1]
+ ]),
+ "Civic Education":mk([
+  ["What is a constitution?",["A country's fundamental set of rules and principles","A political campaign poster","A court case","A tax receipt"],0],
+  ["Which institution is responsible for organising and managing elections in Zambia?",["Bank of Zambia","Electoral Commission of Zambia","Zambia Revenue Authority","Local court"],1],
+  ["Which is a function of local councils?",["Collecting local levies and providing local services","Printing national currency","Appointing all judges","Controlling the central bank"],0],
+  ["What is decentralisation mainly concerned with?",["Moving some decision-making and functions closer to local levels","Ending local government","Removing elections","Replacing all councils with courts"],0],
+  ["Which of the following is an example of electoral malpractice?",["Voter education","Bribing voters","Voter registration","Counting votes according to procedure"],1],
+  ["What is a citizen's responsibility when exercising a right?",["To respect the rights of others","To ignore the law","To prevent others from voting","To avoid civic duties"],0]
+ ]),
+ "Mathematics":mk([
+  ["Solve: 3x - 7 = 14",["5","6","7","8"],2],
+  ["Factorise: x² + 7x + 12",["(x+2)(x+6)","(x+3)(x+4)","(x+1)(x+12)","(x-3)(x-4)"],1],
+  ["If y = 2x + 5, find y when x = 4.",["9","11","13","15"],2],
+  ["What is the probability of getting an even number when a fair six-sided die is rolled?",["1/6","1/3","1/2","2/3"],2],
+  ["Simplify: 5a + 3a - 2a",["6a","8a","10a","a"],0],
+  ["A triangle has base 12 cm and perpendicular height 7 cm. What is its area?",["42 cm²","84 cm²","19 cm²","38 cm²"],0]
+ ]),
+ "Geography":mk([
+  ["Which instrument is used to measure atmospheric pressure?",["Rain gauge","Barometer","Anemometer","Hygrometer"],1],
+  ["What is the process by which rocks are broken down at or near the Earth's surface?",["Weathering","Deposition","Condensation","Evaporation"],0],
+  ["Which type of rainfall occurs when moist air is forced to rise over a mountain?",["Convectional","Relief","Frontal","Cyclonic"],1],
+  ["What is the main purpose of a topographical map?",["To show detailed physical and human features of an area","To record only temperatures","To show only political parties","To measure blood pressure"],0],
+  ["Which line joins places of equal height above sea level on a map?",["Isobar","Contour","Isotherm","Latitude"],1]
+ ]),
+ "English Language":mk([
+  ["Choose the correct transformation: 'It is no use arguing with him.'",["It is no use to argue with him.","It is no use arguing with him.","It is no use argue with him.","It is no use argued with him."],1],
+  ["Choose the sentence with correct subject-verb agreement.",["Neither the teacher nor the pupils was late.","Neither the teacher nor the pupils were late.","Neither the teacher nor the pupils is late yesterday.","Neither teacher nor pupils has late."],1],
+  ["What is the purpose of a topic sentence?",["To state the main idea of a paragraph","To list page numbers","To give the bibliography","To end every essay"],0],
+  ["Identify the figure of speech: 'The classroom was as quiet as a library.'",["Metaphor","Simile","Personification","Irony"],1],
+  ["Complete: 'I cannot help ___ when I hear that song.'",["dance","dancing","to dance","danced"],1]
+ ])
+},
+"Grade 11":{
+ "Biology":mk([
+  ["Which stage of mitosis is characterised by chromosomes lining up at the equator?",["Prophase","Metaphase","Anaphase","Telophase"],1],
+  ["Which molecule carries amino acids to the ribosome during protein synthesis?",["mRNA","tRNA","DNA","ATP"],1],
+  ["What is the role of insulin in blood glucose regulation?",["It raises blood glucose","It lowers blood glucose","It digests proteins","It transports oxygen"],1],
+  ["Which part of the nephron is mainly associated with selective reabsorption?",["Renal tubule","Alveolus","Villus","Bronchus"],0],
+  ["Which hormone is associated with the development of male secondary sexual characteristics?",["Oestrogen","Testosterone","Insulin","ADH"],1],
+  ["What is the term for the movement of a population of organisms into a new area?",["Immigration","Emigration","Mutation","Speciation"],0],
+  ["Which relationship benefits both organisms?",["Parasitism","Mutualism","Predation","Competition"],1]
+ ]),
+ "Civic Education":mk([
+  ["Which principle means that government power is divided among different institutions?",["Separation of powers","Censorship","Centralisation","Monopoly"],0],
+  ["What is one purpose of human rights instruments?",["To protect recognised rights and freedoms","To abolish all laws","To replace elections","To prevent courts from operating"],0],
+  ["What is corruption?",["Abuse of entrusted power for improper advantage","A lawful public service","A form of rainfall","A type of election"],0],
+  ["What is meant by gender equality?",["Equal rights, opportunities and treatment regardless of gender","Only men holding public office","Only women receiving education","Different laws for every gender"],0],
+  ["Which branch of government generally interprets laws?",["Judiciary","Executive","Legislature","Electoral Commission"],0]
+ ]),
+ "Mathematics":mk([
+  ["Solve: x² - 5x + 6 = 0",["x=1 or 6","x=2 or 3","x=-2 or -3","x=3 only"],1],
+  ["What is the gradient of the line through (1,2) and (3,8)?",["2","3","4","6"],1],
+  ["If sin θ = 1/2 for an acute angle θ, what is θ?",["30°","45°","60°","90°"],0],
+  ["Find the mean of 4, 7, 9, 10 and 15.",["8","9","10","11"],1],
+  ["What is the determinant of [[2,1],[3,4]]?",["5","8","11","-5"],0],
+  ["Differentiate y = x³.", ["x²","2x²","3x²","3x"],2]
+ ]),
+ "Geography":mk([
+  ["What is urbanisation?",["Growth in the proportion of people living in urban areas","Movement from cities to farms only","Formation of mountains","Reduction in rainfall"],0],
+  ["Which factor can encourage rural-urban migration?",["Search for employment","Lack of roads everywhere","Decrease in all services","Permanent snowfall"],0],
+  ["Which process involves the removal and transport of weathered material?",["Erosion","Condensation","Insolation","Deposition only"],0],
+  ["What is a renewable resource?",["A resource naturally replenished on a human-use timescale","A resource that can never be replaced","A manufactured product","A non-living organism"],0],
+  ["Which farming practice helps reduce soil erosion on sloping land?",["Contour ploughing","Removing all vegetation","Overgrazing","Burning all crop residues"],0]
+ ]),
+ "English Language":mk([
+  ["Complete: 'There is no point ___ about what has already happened.'",["worry","worrying","to worry","worried"],1],
+  ["Choose the passive form: 'People speak English in many countries.'",["English speaks people in many countries.","English is spoken in many countries.","English was speaking in many countries.","People are spoken by English."],1],
+  ["Which word is closest in meaning to 'concise'?",["Brief","Confusing","Ancient","Loud"],0],
+  ["Which device repeats the initial consonant sound in nearby words?",["Alliteration","Oxymoron","Pun","Euphemism"],0],
+  ["Complete: 'I don't mind ___ early.'",["leave","leaving","to leave","left"],1]
+ ])
+},
+"Grade 12":{
+ "Biology":mk([
+  ["Which part of the mammalian skeleton forms the main support for the body and protects the spinal cord?",["Vertebral column","Pectoral girdle","Scapula","Sternum"],0],
+  ["Which structure connects a muscle to a bone?",["Ligament","Tendon","Cartilage","Synovial membrane"],1],
+  ["What is the main function of red blood cells?",["Transport oxygen","Produce antibodies","Digest fats","Clot wounds"],0],
+  ["Which process produces genetically different gametes?",["Mitosis","Meiosis","Binary fission","Budding"],1],
+  ["Which ecological level includes organisms of different species living and interacting in an area?",["Population","Community","Organ","Tissue"],1],
+  ["Which factor can limit population growth as population density increases?",["Competition for resources","Unlimited food","Unlimited space","No disease"],0],
+  ["Which blood vessel carries oxygenated blood from the lungs to the heart?",["Pulmonary artery","Pulmonary vein","Vena cava","Aorta"],1]
+ ]),
+ "Civic Education":mk([
+  ["Which electoral system is identified in Zambia's civic education syllabus as a system used for electing representatives?",["Single Member Plurality system","Random selection","Hereditary appointment","Military appointment"],0],
+  ["Which activity is part of the electoral process?",["Voter registration","Private banking","Crop harvesting","Weather forecasting"],0],
+  ["What is the main purpose of a bill of rights?",["To set out protected rights and freedoms","To list crop prices","To appoint traditional leaders","To record rainfall"],0],
+  ["Which institution makes laws at national level in Zambia?",["Parliament","A private company","A sports club","A school committee"],0],
+  ["Why is civic participation important in a democratic society?",["It enables citizens to take part in public affairs","It removes accountability","It prevents public discussion","It ends local government"],0],
+  ["Which is an example of financial literacy?",["Planning income, spending and saving","Ignoring all records","Borrowing without considering repayment","Destroying receipts"],0]
+ ]),
+ "Mathematics":mk([
+  ["If f(x)=2x²-3x+1, find f(2).",["1","3","5","7"],1],
+  ["Solve the simultaneous equations: x+y=9 and x-y=3. What is x?",["3","6","9","12"],1],
+  ["The gradient of a curve at a point is represented by which calculus concept?",["Derivative","Integral only","Matrix","Determinant"],0],
+  ["What is the probability of drawing a red card from a standard 52-card pack?",["1/4","1/2","13/52","3/4"],1],
+  ["If the mean of five numbers is 12, what is their total?",["17","48","60","72"],2],
+  ["What is the integral of 2x dx?",["2x²+C","x²+C","x+C","2+C"],1]
+ ]),
+ "Geography":mk([
+  ["What is population density?",["Number of people per unit area","Total rainfall in a year","Number of rivers in a country","Average height of mountains"],0],
+  ["Which factor commonly influences the location of manufacturing industries?",["Availability of raw materials and transport","Colour of school uniforms","Number of football teams","Daily television schedule"],0],
+  ["What is sustainable development?",["Meeting present needs while maintaining the ability of future generations to meet theirs","Using all resources immediately","Stopping all economic activity","Building only in cities"],0],
+  ["Which human activity can contribute to deforestation?",["Clearing land for agriculture","Reforestation","Protected forest management","Tree planting"],0],
+  ["Which map feature helps a reader understand the meaning of symbols?",["Key or legend","Northing only","Border only","Title page"],0]
+ ]),
+ "English Language":mk([
+  ["Choose the correct rewrite: 'It's no good complaining now.'",["It's no good to complain now.","It's no good complaining now.","It's no good complain now.","It's no good complained now."],1],
+  ["Choose the correct rewrite: 'She cannot stand waiting in long queues.'",["She cannot stand to wait in long queues.","She cannot stand waiting in long queues.","She cannot stand wait in long queues.","She cannot stand waited in long queues."],1],
+  ["Which sentence uses reported speech correctly?",["He said that he was tired.","He said that I am tired yesterday.","He says that he was tired tomorrow.","He said he is tired yesterday."],0],
+  ["Which type of writing is mainly intended to persuade a reader?",["Argumentative writing","A shopping list","A timetable","A dictionary entry"],0],
+  ["What does 'infer' mean when reading a passage?",["Reach a conclusion from evidence and clues","Copy every word","Ignore the context","Change the title"],0]
+ ]),
+ "Commerce":mk([
+  ["What is a source document in business?",["A document providing evidence of a transaction","A school timetable","A weather map","A novel"],0],
+  ["What is the main purpose of a cash book?",["Record cash and bank transactions","Record only employee birthdays","Record weather observations","Record examination marks"],0],
+  ["What is capital in business?",["Money or assets used to start or operate a business","A customer complaint","A sales receipt only","A tax penalty"],0],
+  ["What is insurance?",["A contract providing financial protection against specified risks","A method of farming","A form of advertising only","A type of bank cheque"],0],
+  ["What is net profit?",["Profit remaining after relevant expenses are deducted","Sales before any costs","Total stock purchased","Cash received before sales"],0]
+ ]),
+ "Computer Studies":mk([
+  ["What is a database?",["An organised collection of related data","A type of monitor","A power cable","A printer setting"],0],
+  ["Which network device forwards data between different networks?",["Router","Keyboard","Monitor","Scanner"],0],
+  ["What is phishing?",["A deceptive attempt to obtain sensitive information","A method of cooling a computer","A file compression method","A type of printer"],0],
+  ["What does HTTPS indicate on a website?",["A secure HTTP connection using encryption","A faster keyboard","An offline website","A graphics format"],0],
+  ["What is an algorithm?",["A finite sequence of steps for solving a problem","A computer virus only","A storage device","A type of monitor"],0]
+ ])
+}
+};
+Object.entries(ECZX).forEach(([grade,subjects])=>Object.entries(subjects).forEach(([subject,items])=>{
+  if(!LV[grade])LV[grade]={};
+  LV[grade][subject]=(LV[grade][subject]||[]).concat(items);
+}));
+
+const fillQ=(P,ls)=>Object.entries(P).forEach(([n,t])=>ls.forEach(l=>{if(!(LV[l][n]||[]).length)LV[l][n]=T(t)}));
+fillQ(PP,["Grade 5","Grade 6","Grade 7"]);fillQ(FF,["Form 1","Form 2"]);
+["Grade 10","Grade 11"].forEach(l=>Object.keys(LV[l]).forEach(n=>{if(!LV[l][n].length)LV[l][n]=G12[n]||[]}));
+const $=id=>document.getElementById(id),L="ABCD";const DEF={tn:25,tsp:60,count:0,rate:.95,voice:true,sound:true,tick:true,auto:true,zoom:"",vn:"",vp:1,vv:1,sv:.6,vib:true,pn:"",ac:"default",fs:"1",hc:false,anim:true,ai:"gsearch",aim:"web",aicu:"",sr:false,sr2:false,te:"",wave:"",tp:1,th:"",ff:"",grid:true,rd:"24",lh:"1.5",snd:{ok:"chime",bad:"buzzer",tick:"beep",warn:"alarm",bell:"bell"},vpreset:"auto",fishEndpoint:"/api/tts",fishVoice:"933563129e564b19a115bedd57b7406a"};
+let S={...DEF};try{Object.assign(S,JSON.parse(localStorage.getItem("hs_set")||"{}"))}catch(e){}
+S.links=S.links||{};S.snd=Object.assign({},DEF.snd,S.snd);if(S.zoom&&!S.links.zoom)S.links.zoom=S.zoom;
+let TIME=S.tn,mode="normal",adv;
+let sub,qs,i,score,streak,missed,tm,left,locked,ac,voice;
+
+const ENG=[
+ ["","Automatic — browser/device"],
+ ["google","Google/Chrome Android voices (en-US)"],
+ ["device","All voices exposed by this browser/device"],
+ ["fish","Fish Audio — natural AI voice (secure proxy)"]
+];
+let VOICES=[];
+function voiceKey(v){return [v.name,v.lang,v.voiceURI].join("||")}
+function isGoogleVoice(v){
+ const n=((v.name||"")+" "+(v.voiceURI||"")).toLowerCase();
+ return /google|chrome|android/.test(n) && /^en-us$/i.test((v.lang||"").replace('_','-'));
+}
+function rawBrowserVoices(){return 'speechSynthesis' in window?(speechSynthesis.getVoices()||[]):[]}
+function refreshVoices(){
+ const raw=rawBrowserVoices(),seen=new Set();VOICES=[];
+ raw.forEach(v=>{const k=voiceKey(v);if(!seen.has(k)){seen.add(k);VOICES.push(v)}});
+ VOICES.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+ fillVoices();pick();updateVoiceStatus();updateVoiceCount();return VOICES;
+}
+const VOICE_PRESETS=[
+ ["auto","Automatic — browser/device"],
+ ["google","Google en-US — automatic"],
+ ["device","Choose a device/browser voice"],
+ ["fish","Fish Audio — natural AI"]
+];
+function engine(){return S.te||""}
+function browserVoiceList(){
+ const all=rawBrowserVoices();
+ if(engine()==="google")return all.filter(isGoogleVoice);
+ if(engine()==="device")return all;
+ return all;
+}
+function pick(){
+ if(engine()==="fish"){voice=null;updateVoiceStatus();return}
+ const list=browserVoiceList();
+ const preferred=S.vn&&list.find(v=>voiceKey(v)===S.vn);
+ const google=list.find(isGoogleVoice);
+ voice=preferred||google||list.find(v=>/^en(-|_)/i.test(v.lang||""))||list[0]||null;
+ updateVoiceStatus();fillVoices();
+}
+function updateVoiceStatus(){
+ const e=$("vs");if(!e)return;
+ if(!S.voice){e.textContent="Voice off";return}
+ if(engine()==="fish"){e.textContent=S.fishVoice?"Fish Audio: "+S.fishVoice.slice(0,22):"Fish Audio — choose voice";return}
+ e.textContent=voice?((isGoogleVoice(voice)?"Google: ":"Device: ")+voice.name.slice(0,24)):"Browser voice unavailable";
+}
+if("speechSynthesis" in window){
+ refreshVoices();speechSynthesis.addEventListener?.("voiceschanged",refreshVoices);
+ setTimeout(refreshVoices,250);setTimeout(refreshVoices,1000);setTimeout(refreshVoices,2500);
+}
+let sayTok=0,uq=[];
+let fishAudio=null;
+function note(m){const n=$("er");n.textContent=m+" (tap to close)";n.onclick=()=>n.classList.add("hide");n.classList.remove("hide")}
+function stopSay(){document.body.classList.remove("talk");sayTok++;try{if("speechSynthesis" in window)speechSynthesis.cancel()}catch(e){}if(fishAudio){try{fishAudio.pause();fishAudio.currentTime=0}catch(e){}}}
+async function sayFish(t,cb,force){
+ const tok=sayTok;const endpoint=(S.fishEndpoint||"").trim();const text=String(t||"").trim();
+ if(!endpoint){note("Fish Audio needs your HTTPS secure proxy URL.");cb&&cb();return}
+ let u;try{u=new URL(endpoint)}catch(e){note("Fish Audio proxy URL is invalid.");cb&&cb();return}
+ if(u.protocol!=="https:" && u.hostname!=="localhost" && u.hostname!=="127.0.0.1"){note("For security, the Fish proxy must use HTTPS.");cb&&cb();return}
+ if(text.length>4000){note("This voice request is too long. Please use a shorter passage.");cb&&cb();return}
+ const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),30000);
+ try{
+  note("Generating natural Fish Audio voice…");
+  const res=await fetch(u.toString(),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text,reference_id:String(S.fishVoice||"").trim(),format:"mp3"}),signal:controller.signal,credentials:"omit",cache:"no-store"});
+  if(!res.ok)throw new Error((await res.text()).slice(0,500));
+  const blob=await res.blob();clearTimeout(timer);if(tok!==sayTok)return;
+  const url=URL.createObjectURL(blob);fishAudio=new Audio(url);fishAudio.playbackRate=Math.max(.5,Math.min(1.5,S.rate||1));fishAudio.volume=Math.max(.1,Math.min(1,S.vv||1));
+  fishAudio.onplay=()=>{document.body.classList.add("talk");$("er").classList.add("hide")};
+  fishAudio.onended=()=>{URL.revokeObjectURL(url);document.body.classList.remove("talk");cb&&cb()};
+  fishAudio.onerror=()=>{URL.revokeObjectURL(url);note("Fish Audio playback failed.");cb&&cb()};await fishAudio.play();
+ }catch(e){clearTimeout(timer);if(tok===sayTok){note(e.name==="AbortError"?"Fish Audio timed out. Check your proxy/server.":"Fish Audio failed. Check the secure proxy and voice ID.");cb&&cb()}}
+}
+
+function say(t,cb,force){
+ const tok=++sayTok;let done=false;if(!S.voice&&!force){setTimeout(()=>{if(tok===sayTok)cb&&cb()},0);return}
+ if(engine()==="fish"){sayFish(t,cb,force);return}
+ const fin=()=>{if(!done&&tok===sayTok){done=true;document.body.classList.remove("talk");cb&&cb()}};
+ if(!('speechSynthesis' in window)){note("This browser has no speech synthesis. Choose Fish Audio or another browser/device voice.");fin();return}
+ refreshVoices();if(!voice){note(engine()==="google"?"No Google en-US voice is exposed. Enable Google's speech service, then refresh voices.":"No browser/device voice is available yet. Tap Refresh voices.");fin();return}
+ try{speechSynthesis.cancel()}catch(e){}
+ const parts=(t.match(/[^.?!]+[.?!]?/g)||[t]).map(x=>x.trim()).filter(Boolean).flatMap(x=>x.length>160?(x.match(/.{1,150}(\s|$)/g)||[x]).map(y=>y.trim()):[x]);
+ let fallback=setTimeout(fin,Math.min(60000,t.split(" ").length*450+4000));
+ setTimeout(()=>{if(tok!==sayTok)return;let started=false;uq=[];try{
+  parts.forEach((p,k)=>{const u=new SpeechSynthesisUtterance(p);u.voice=voice;u.lang=voice.lang||"en-US";u.rate=S.rate*(mode==="sp"?.85:1);u.pitch=S.vp;u.volume=S.vv;
+   u.onstart=()=>{started=true;clearTimeout(fallback);document.body.classList.add("talk");$("er").classList.add("hide")};
+   u.onend=()=>{if(k===parts.length-1){clearTimeout(fallback);fin()}};
+   u.onerror=e=>{if(e.error&&e.error!=="interrupted"&&e.error!=="canceled"){clearTimeout(fallback);note("Browser voice failed. Choose another voice or refresh voices.");fin()}};
+   uq.push(u);speechSynthesis.speak(u);
+  });
+  setTimeout(()=>{if(!started&&tok===sayTok){clearTimeout(fallback);note("The browser voice did not start. Check volume and try again.");fin()}},3500);
+ }catch(e){clearTimeout(fallback);note("Speech failed. Try another voice.");fin()}},80)
+}
+function vlist(g){return g===undefined?browserVoiceList():browserVoiceList()}
+function vopts(g){return [["","Automatic — best available"]].concat(browserVoiceList().map(v=>[voiceKey(v),`${v.name} — ${v.lang}${v.localService?" · device":" · browser/cloud"}`]))}
+function fillVoices(){const e=$("s_vn");if(!e)return;const cur=S.vn||"";e.innerHTML=vopts().map(o=>`<option value="${o[0].replace(/"/g,"&quot;")}" ${o[0]===cur?"selected":""}>${o[1]}</option>`).join("")}
+
+
+/* Voice Lab controller + client safety patch */
+const VOICE_ENDPOINT_KEY="hs_fish_endpoint";
+function syncVoiceLab(){
+ const mode=S.te||"";document.querySelectorAll("#voiceModes .voice-mode").forEach(b=>{const on=b.dataset.engine===mode;b.classList.toggle("active",on);b.setAttribute("aria-pressed",String(on))});
+ const st=$("voiceLabStatus"),dot=$("voiceDot"); if(!st)return;
+ let msg="Auto mode · scanning browser voices";
+ if(mode==="google")msg="Google/Chrome Android · en-US preferred";
+ if(mode==="device")msg=(browserVoiceList().length||0)+" device/browser voices available";
+ if(mode==="fish")msg=S.fishEndpoint?"Fish Audio proxy configured · key protected":"Fish Audio selected · server key protected";
+ st.textContent=msg;dot.classList.toggle("off",!S.voice)
+ const ep=$("voiceLabEndpoint"),rf=$("voiceLabRef");if(ep&&ep.value!==S.fishEndpoint)ep.value=S.fishEndpoint||"";if(rf&&rf.value!==S.fishVoice)rf.value=S.fishVoice||"";
+}
+function initVoiceLab(){
+ document.querySelectorAll("#voiceModes .voice-mode").forEach(b=>b.onclick=()=>{S.te=b.dataset.engine||"";S.vn="";if(S.te!=="fish")pick();fillVoices();updateVoiceStatus();syncVoiceLab()});
+ $("voiceLabRefresh")?.addEventListener("click",()=>{refreshVoices();syncVoiceLab();note(VOICES.length?"Voice scan complete.":"No browser voices exposed yet. Check phone/browser speech settings.")});
+ $("voiceLabTest")?.addEventListener("click",()=>{S.fishEndpoint=$("voiceLabEndpoint")?.value.trim()||S.fishEndpoint||"";S.fishVoice=$("voiceLabRef")?.value.trim()||S.fishVoice||"";say("Welcome to Hardcore School. Your voice system is online.",null,true)});
+ $("voiceLabEndpoint")?.addEventListener("change",e=>{S.fishEndpoint=e.target.value.trim();syncVoiceLab()});
+ $("voiceLabRef")?.addEventListener("change",e=>{S.fishVoice=e.target.value.trim();syncVoiceLab()});
+ syncVoiceLab();
+}
+const _oldFill=fill; fill=function(){_oldFill();initVoiceLab();syncVoiceLab()};
+/* Save voice lab values when Settings is saved. */
+const _oldSave=$("sv").onclick;$("sv").onclick=function(){S.fishEndpoint=$("voiceLabEndpoint")?.value.trim()||S.fishEndpoint||"";S.fishVoice=$("voiceLabRef")?.value.trim()||S.fishVoice||"";_oldSave();syncVoiceLab()};
+
+/* Sounds */
+function tone(seq,type,dur){if(!S.sound)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==="suspended")ac.resume();let t=ac.currentTime;seq.forEach(f=>{const o=ac.createOscillator(),g=ac.createGain();o.type=S.wave||type;o.frequency.value=f*(S.tp||1);g.gain.setValueAtTime(.3*S.sv,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+dur);t+=dur*.8})}catch(e){}}
+const chime=()=>play("ok"),buzz=()=>play("bad"),bell=()=>play("bell");
+
+/* Scoreboard */
+function board(){let b=[];try{b=JSON.parse(localStorage.getItem("hs_board")||"[]")}catch(e){}return b}
+function saveBoard(e){try{const b=board();b.push(e);b.sort((x,y)=>y.p-x.p);localStorage.setItem("hs_board",JSON.stringify(b.slice(0,8)))}catch(e){}}
+function showBoard(){const b=board();$("sb").innerHTML=b.length?b.map(e=>`<li>${e.s}: ${e.n} of ${e.t} (${e.p}%)</li>`).join(""):"<li>No scores yet. Take a quiz to start.</li>"}
+
+/* Screens */
+let cur="home";
+function show(id){["home","quiz","end","set","tch","rt"].forEach(x=>$(x).classList.toggle("hide",x!==id));$("cl").classList.toggle("hide",id==="home");
+ const N={home:document.body.dataset.v==="quiz"?"nva":"nvh",end:"nva",tch:"nvh",rt:"nvh",set:"gs"};["nvh","nva","gs"].forEach(k=>$(k).classList.toggle("on",N[id]===k));$("nav").classList.toggle("hide",id==="quiz");
+ try{if(id!=="home")cur==="home"?history.pushState({s:1},""):history.replaceState({s:1},"");else if(cur!=="home"&&history.state&&history.state.s)history.back()}catch(e){}
+ cur=id;window.scrollTo(0,0);
+ if(S.sr&&{home:1,set:1,tch:1,rt:1}[id]){const N2={home:"Home",set:"Settings",tch:"Learn with AI",rt:"Online real teacher"};setTimeout(()=>{if(S.sr&&cur===id)say(N2[id]+" screen",null,true)},250)}}
+function home(){clearInterval(tm);clearTimeout(adv);stopSay();showBoard();showStats();show("home")}
+function subs(){const g=$("subs");g.innerHTML="";Object.keys(LV[lv]).forEach(n=>{const b=document.createElement("button");const c=LV[lv][n].length;b.textContent=n+(c?" ("+c+" questions)":" (coming soon)");b.disabled=!c;b.onclick=()=>start(n);g.appendChild(b)})}
+Object.keys(LV).forEach(l=>{const b=document.createElement("button");b.textContent=l;b.setAttribute("aria-pressed","false");b.onclick=()=>{lv=l;[...$("gr").children].forEach(x=>x.setAttribute("aria-pressed",x===b));$("sjh").textContent="Subjects for "+l;$("sbc").classList.remove("hide");subs();try{$("sbc").scrollIntoView({behavior:"smooth",block:"start"})}catch(e){}};$("gr").appendChild(b)});
+
+function setView(v){document.body.dataset.v=v}
+function start(s){setView("quiz");sub=s;qs=[...LV[lv][s]].sort(()=>Math.random()-.5);if(S.count>0)qs=qs.slice(0,S.count);fifty=1;i=0;score=0;streak=0;missed=[];show("quiz");ask()}
+const right=q=>q.o?q.o[q.a]:q.a.split("|")[0];
+function ask(){
+ const q=qs[i];locked=false;clearTimeout(adv);
+ $("pg").textContent="Question "+(i+1)+" of "+qs.length;$("sc").textContent="Score "+score;$("st").textContent="Streak "+streak;
+ $("fb").classList.add("hide");$("nx").classList.add("hide");
+ $("qt").textContent=q.q;$("ans").innerHTML="";
+ let spoken=q.q;
+ if(q.o){q.o.forEach((o,k)=>{const b=document.createElement("button");b.className="opt";b.textContent=L[k]+". "+o;b.onclick=()=>check(k);$("ans").appendChild(b)});spoken+=" "+q.o.map((o,k)=>"Option "+L[k]+", "+o+".").join(" ")}
+ else{$("ans").innerHTML='<input type="text" id="wd" aria-label="Type your one word answer" autocomplete="off"><button class="primary" id="go" style="width:100%">Submit answer</button>';$("go").onclick=()=>check($("wd").value);$("wd").onkeydown=e=>{if(e.key==="Enter")check($("wd").value)};spoken+=" Type a one word answer."}
+ q.speech=spoken;$("fh").disabled=!(q.o&&fifty>0);$("fh").textContent="50/50 ("+fifty+")";clock(false);
+ say(spoken,()=>{if(!locked)clock(true)});
+}
+function clock(run){
+ clearInterval(tm);left=TIME;paint();
+ if(!run)return;
+ tm=setInterval(()=>{left--;paint();if(left<=0){clearInterval(tm);bell();check(null)}else if(S.tick)play(left<=5?"warn":"tick")},1000)
+}
+function paint(){$("tl").style.color=left<=5?"var(--bad)":"";$("tb").parentNode.classList.toggle("u",left<=5&&left>0);$("tl").textContent=left+" seconds left";$("tb").style.width=(left/TIME*100)+"%"}
+$("rp").onclick=()=>{if(!locked){clearInterval(tm);say(qs[i].speech,()=>{if(!locked)clock(true)})}};
+
+function check(v){
+ if(locked)return;locked=true;clearInterval(tm);
+ const q=qs[i];let ok;
+ if(q.o)ok=(v===q.a);else ok=v!==null&&q.a.split("|").includes(String(v).trim().toLowerCase().replace(/\s+/g," ").replace(/[.!]+$/,""));
+ const fb=$("fb");fb.classList.remove("hide");
+ if(q.o)[...$("ans").children].forEach((b,k)=>{b.disabled=true;if(k===q.a)b.classList.add("good");else if(k===v)b.classList.add("bad")});
+ else{$("wd").disabled=true;$("go").disabled=true}
+ try{if(S.vib&&navigator.vibrate)navigator.vibrate(ok?40:[90,50,90])}catch(e){}
+ let msg,sp;const ex=q.e?" "+q.e:"";
+ if(ok){score++;streak++;addXp(10+Math.max(0,left));chime();msg="Correct! Well done."+(streak>2?" That is "+streak+" in a row.":"");sp=msg+" Here is why. "+q.q+" The answer is "+right(q)+"."+ex;fb.style.borderColor="var(--ok)"}
+ else{streak=0;if(v!==null)buzz();missed.push(q);const w=v===null?"Time is up. ":"Not quite. ";msg=w+"The correct answer is "+right(q)+".";sp=w+"Let me read the question again. "+q.q+" The correct answer is "+right(q)+"."+ex;fb.style.borderColor="var(--bad)"}
+ fb.textContent=msg+" Explanation: "+q.q+" Answer: "+right(q)+"."+ex;$("sc").textContent="Score "+score;$("st").textContent="Streak "+streak;
+ $("nx").classList.remove("hide");$("nx").textContent=i+1<qs.length?"Next question":"See results";$("nx").focus();
+ adv=setTimeout(()=>say(sp,()=>{if(S.auto)adv=setTimeout(()=>{if(locked&&!$("quiz").classList.contains("hide"))$("nx").click()},S.voice?1200:4000)}),ok?450:600);
+}
+$("nx").onclick=()=>{clearTimeout(adv);stopSay();i++;i<qs.length?ask():finish()};
+
+function finish(){
+ const p=Math.round(score/qs.length*100);const st=stats();st.q+=qs.length;st.c+=score;st.n++;const nb=p>st.best;st.best=Math.max(st.best,p);saveStats(st);$("rg2").style.setProperty("--p",p);saveBoard({s:lv+" - "+sub,n:score,t:qs.length,p});
+ $("fs").textContent=score+" / "+qs.length;
+ const m=p>=80?"Excellent work. You are ready.":p>=50?"Good effort. Revise the questions below and try again.":"Keep going. Read the revision list and take the quiz again.";
+ $("fm").textContent=p+"%. "+m+(nb&&st.n>1?" New personal best!":"");
+ $("rv").innerHTML=missed.length?missed.map(q=>`<li>${q.q}<br><b>Answer: ${right(q)}</b></li>`).join(""):"<li>No mistakes. Nothing to revise.</li>";
+ show("end");say("You scored "+score+" out of "+qs.length+". "+m);
+}
+$("rr").onclick=()=>say(missed.length?"Revision. "+missed.map((q,k)=>"Question "+(k+1)+". "+q.q+" The answer is "+right(q)+".").join(" "):"You have nothing to revise.");
+$("hm").onclick=home;
+
+/* Progress, daily streak, lifeline, daily challenge */
+function stats(){let t={};try{t=JSON.parse(localStorage.getItem("hs_stats")||"{}")}catch(e){}return Object.assign({q:0,c:0,n:0,best:0,d:"",days:0},t)}
+function saveStats(t){try{localStorage.setItem("hs_stats",JSON.stringify(t))}catch(e){}}
+function dayTick(){const t=stats(),a=new Date().toDateString();if(t.d!==a){t.days=t.d===new Date(Date.now()-864e5).toDateString()?t.days+1:1;t.d=a;saveStats(t)}}
+function showStats(){const t=stats(),acc=t.q?Math.round(t.c/t.q*100):0;$("stt").innerHTML=[[t.days,"Day streak"],[t.n,"Quizzes done"],[acc+"%","Accuracy"],[t.best+"%","Best score"]].map(x=>`<div class="tile"><b>${x[0]}</b>${x[1]}</div>`).join("")}
+$("fh").onclick=()=>{const q=qs[i];if(locked||!q.o||fifty<1)return;fifty--;const w=[];q.o.forEach((o,k)=>{if(k!==q.a)w.push(k)});w.sort(()=>Math.random()-.5).slice(0,2).forEach(k=>{const b=$("ans").children[k];b.disabled=true;b.style.opacity=.3});$("fh").disabled=true;$("fh").textContent="50/50 (0)"};
+$("dc").onclick=()=>{if(!lv)return;const all=[];Object.keys(LV[lv]).forEach(n=>all.push(...LV[lv][n]));if(!all.length){note("No questions for this grade yet.");return}setView("quiz");sub="Daily challenge";qs=all.sort(()=>Math.random()-.5).slice(0,5);fifty=1;i=0;score=0;streak=0;missed=[];show("quiz");ask()};
+/* Settings and owner */
+const AIS=[["gsearch","Google AI Mode","https://www.google.com/search?udm=50&q={q}","com.google.android.googlequicksearchbox"],["claude","Claude","https://claude.ai/new?q={q}","com.anthropic.claude"],["chatgpt","ChatGPT","https://chatgpt.com/?q={q}","com.openai.chatgpt"],["gemini","Google Gemini","https://gemini.google.com/app","com.google.android.apps.bard"],["copilot","Microsoft Copilot","https://copilot.microsoft.com/?q={q}","com.microsoft.copilot"],["pplx","Perplexity","https://www.perplexity.ai/search?q={q}","ai.perplexity.app.android"],["google","Google Search","https://www.google.com/search?q={q}"]];
+const PRE={
+beep:[[800],"square",.06],soft:[[520],"sine",.12],digital:[[1200,900],"square",.05],chime:[[660,880,1320],"sine",.18],bell:[[1568,1175,1568,1175,1568],"triangle",.45],buzzer:[[140,110],"sawtooth",.35],drum:[[120,80],"triangle",.2],pop:[[900,500],"sine",.06],alarm:[[1500,1500],"square",.09],buzz:[[100,100,100],"sawtooth",.12],horn:[[330,262],"sawtooth",.3],coin:[[988,1319],"square",.1],laser:[[1800,900,450],"sawtooth",.06],marimba:[[523,659,784],"triangle",.14],piano:[[523,659,784,1047],"sine",.22],
+"google-welcome":[[523,659,784,1047,784,659],"sine",.32],"google-correct":[[784,988,1175],"sine",.20],"google-success":[[523,659,784,1047,1319],"triangle",.24],"google-soft":[[392,494,587],"sine",.26],"google-warning":[[659,622,587,554],"sine",.16],"google-end":[[784,659,523,392],"sine",.30]};
+const NATURAL_TONES=[
+ ["google-welcome","Google-style welcome"],["google-correct","Google-style correct"],["google-success","Google-style success"],["google-soft","Google-style soft"],["google-warning","Google-style warning"],["google-end","Google-style finish"]
+];
+const EV=[["ok","Correct answer"],["bad","Wrong answer"],["tick","Timer tick"],["warn","Timer warning, last 5 seconds"],["bell","Time is up"]];
+function play(ev){if(!S.sound)return;const c=S.snd[ev];if(c==="none")return;
+ if(c==="custom"){try{const u=localStorage.getItem("hs_c_"+ev);if(u){const a=new Audio(u);a.volume=S.sv;const r=a.play();if(r&&r.catch)r.catch(()=>{})}}catch(e){}return}
+ const p=PRE[c];if(p)tone(p[0],p[1],p[2])}
+const SPEC=[["","Timing","hd"],["tn","Seconds per question, normal","num",5,120,1],["tsp","Seconds per question, special education","num",10,180,1],["count","Questions per quiz (0 = all)","num",0,50,1],["auto","Go to the next question automatically","chk"],
+["","Voice","hd"],["voice","Read questions and explanations aloud","chk"],["te","Speech engine","sel",ENG],["vpreset","Voice profile","sel",VOICE_PRESETS],["vn","Browser / device voice","sel",vopts],["fishEndpoint","Fish Audio server URL","txt"],["fishVoice","Fish Audio voice ID","txt"],["rate","Voice speed (0.5 to 1.5)","num",.5,1.5,.05],["vp","Voice pitch (0.5 to 1.5)","num",.5,1.5,.05],["vv","Voice volume (0.1 to 1)","num",.1,1,.05],
+["","Sound","hd"],["sound","Sound effects, beeps and bell","chk"],["tick","Beep every second while the timer runs","chk"],["sv","Sound volume (0.1 to 1)","num",.1,1,.05],["vib","Vibrate on answers","chk"],["wave","Instrument sound (tone shape)","sel",[["","Each tone's own"],["sine","Soft, flute-like"],["triangle","Mellow, bell-like"],["square","Retro game"],["sawtooth","Buzzy, horn-like"]]],["tp","Tone pitch (0.5 low to 2 high)","num",.5,2,.05],
+["","Personalise","hd"],["pn","Your name","txt"],["ac","Accent colour","sel",[["default","Cyan (default)"],["#ff3d9a","Magenta"],["#39ff9c","Green"],["#ffb020","Amber"],["#b388ff","Purple"]]],["fs","Text size","sel",[["0.9","Small"],["1","Normal"],["1.2","Large"],["1.5","Extra large"]]],["th","Theme","sel",[["","Keep current"],["dark","Dark"],["light","Light"]]],["ff","Font style","sel",[["","Modern (default)"],["dys","Friendly, easy to read"],["ser","Book style"],["mono","Typewriter"]]],["lh","Line spacing","sel",[["1.3","Tight"],["1.5","Normal"],["1.8","Roomy"],["2.1","Extra roomy"]]],["rd","Card corners","sel",[["6","Square"],["14","Soft"],["24","Round"],["34","Very round"]]],["grid","Moving grid background","chk"],["hc","High contrast","chk"],["anim","Animations","chk"],
+["","Learning with AI","hd"],["ai","Preferred AI for unanswered questions","sel",aiOpts],["aim","Open the AI in","sel",[["web","Browser (website)"],["app","The AI app installed on my phone"]]],["aicu","Your own cloud AI link, https only (put {q} where the question goes)","txt"],
+["","Accessibility","hd"],["sr","Blind or low-vision helper: read every button aloud when I press it (works even if question voice is off)","chk"],["sr2","Also read buttons, fields and screen names when I move to them (Tab or swipe)","chk"]];
+function sndHtml(){
+ const natural=[...Object.keys(PRE)].map(c=>`<option value="${c}">${c[0].toUpperCase()+c.slice(1).replace(/-/g," ")}</option>`).join("");
+ const events=EV.map(([k,t])=>`<label for="q_${k}">${t}</label><select id="q_${k}" style="margin-bottom:6px">${Object.keys(PRE).concat(["custom","none"]).map(c=>`<option value="${c}" ${S.snd[k]===c?"selected":""}>${c==="custom"?"My own sound":c==="none"?"Silent":c[0].toUpperCase()+c.slice(1).replace(/-/g," ")}</option>`).join("")}</select><div class="row" style="flex-wrap:nowrap"><input type="file" id="f_${k}" accept="audio/*" style="flex:1;min-width:0"><button data-t="${k}">Test</button></div>`).join("");
+ return `<h3>Natural tones</h3><p>Browser-generated natural-style tones inspired by modern Google/Android interface feedback. They work offline and do not require a Google account.</p><label for="tonePack">Natural tone style</label><select id="tonePack"><option value="google">Google-style natural tones</option><option value="classic">Classic tones</option><option value="custom">Custom sounds below</option></select>${events}`;
+}
+function applyTonePack(pack){
+ const map=pack==="google"?{ok:"google-correct",bad:"google-warning",tick:"google-soft",warn:"google-warning",bell:"google-end"}:{ok:"chime",bad:"buzzer",tick:"beep",warn:"alarm",bell:"bell"};
+ EV.forEach(([k])=>{if(S.snd[k]!=="custom"&&S.snd[k]!=="none")S.snd[k]=map[k]||S.snd[k]});
+ persist();
+} 
+function bindSnd(){EV.forEach(([k])=>{$("f_"+k).onchange=()=>{const f=$("f_"+k).files[0];if(!f)return;if(f.size>1500000){note("That sound is too big. Choose one under 1.5 MB.");return}
+  const r=new FileReader();r.onload=()=>{try{localStorage.setItem("hs_c_"+k,r.result);$("q_"+k).value="custom";S.snd[k]="custom";persist();note("Sound added. Tap Test to hear it.")}catch(e){note("The phone could not store that sound. Try a smaller file.")}};r.readAsDataURL(f)}});
+ $("sf").querySelectorAll("button[data-t]").forEach(b=>b.onclick=()=>{const k=b.dataset.t,o=S.snd[k],so=S.sound;S.snd[k]=$("q_"+k).value;S.sound=true;play(k);S.sound=so;S.snd[k]=o})}
+function fill(){$("sf").innerHTML=SPEC.map(([k,t,y,a,b,c])=>y==="hd"?`<h3>${t}</h3>`:y==="chk"?`<label class="ck"><input type="checkbox" id="s_${k}" ${S[k]?"checked":""}> ${t}</label>`:y==="sel"?`<label for="s_${k}">${t}</label><select id="s_${k}">${(typeof a==="function"?a():a).map(o=>`<option value="${String(o[0]).replace(/"/g,"&quot;")}" ${String(S[k])===String(o[0])?"selected":""}>${o[1]}</option>`).join("")}</select>`:`<label for="s_${k}">${t}</label><input id="s_${k}" type="${y==="num"?"number":"text"}" ${y==="num"?`min="${a}" max="${b}" step="${c}"`:""} value="${String(S[k]).replace(/"/g,"&quot;")}">`).join("")+`<div class="voiceDock"><b>VOICE NETWORK</b><span>Use Google/Chrome voices, any voice exposed by the phone/browser, or Fish Audio through a secure server. API keys are never stored in this HTML.</span><small id="voiceCount"></small></div>`+sndHtml();bindSnd();$("s_te").onchange=()=>{S.te=$("s_te").value;S.vn="";fillVoices();pick();updateVoiceCount();updateVoiceStatus()};$("s_vn").onchange=()=>{S.vn=$("s_vn").value;voice=browserVoiceList().find(v=>voiceKey(v)===S.vn)||null;updateVoiceStatus()};const vp=$("s_vpreset");if(vp)vp.onchange=()=>{S.vpreset=vp.value;S.te=vp.value==="fish"?"fish":vp.value==="google"?"google":vp.value==="device"?"device":"";S.vn="";pick();fillVoices();updateVoiceStatus();$("s_te").value=S.te};const tp=$("tonePack");if(tp){tp.value="google";tp.onchange=()=>applyTonePack(tp.value)};updateVoiceCount();updateVoiceStatus()}
+const OWNER=Object.freeze({name:"Suwilanji Sinkamba",co:"High-Technologies Network",parent:"High-Tech Entertainment",tel:"0766739286",wa:"260766739286"});
+const SUPPORT_DEFAULT={email:"suwilanjisinkamba184@gmail.com",facebook:"https://www.facebook.com/share/19hkDuU8X8/",whatsapp:"https://wa.me/"+OWNER.wa};
+function supportData(){let x={};try{x=JSON.parse(localStorage.getItem("hs_support")||"{}")}catch(e){}return Object.assign({},SUPPORT_DEFAULT,x)}
+function renderSupport(){const x=supportData();["email","facebook","whatsapp"].forEach(k=>{const e=$("dev"+k.charAt(0).toUpperCase()+k.slice(1));if(e)e.value=x[k]||""});$("developerInfo").innerHTML=`<b>${OWNER.name}</b><br>${OWNER.co} · ${OWNER.parent}<br>Phone: <a href="tel:${OWNER.tel}">${OWNER.tel}</a><br>Facebook: <a href="https://www.facebook.com/share/19hkDuU8X8/" target="_blank" rel="noopener">Developer Facebook</a><br>WhatsApp: <a href="https://wa.me/${OWNER.wa}" target="_blank" rel="noopener">${OWNER.tel}</a>`}
+function saveSupport(){const x={email:$("devEmail").value.trim(),facebook:$("devFacebook").value.trim(),whatsapp:$("devWhatsApp").value.trim()};try{localStorage.setItem("hs_support",JSON.stringify(x))}catch(e){}note("Developer contact details saved.")}
+function supportUrl(k){const x=supportData();if(k==="email"){if(!x.email)return null;return "mailto:"+x.email+"?subject="+encodeURIComponent("Hardcore School support request")+"&body="+encodeURIComponent("Hello Hardcore School developer,\n\nI am contacting you about: \n[Update request / Query / Bug report / Debugging / Problem / Help]\n\nDetails:\n")};if(k==="wa"){let u=x.whatsapp||SUPPORT_DEFAULT.whatsapp;if(/^\+?[0-9\s-]{8,}$/.test(u))u="https://wa.me/"+u.replace(/\D/g,"");return u};return x.facebook||null}
+$("saveSupport").onclick=saveSupport;$("emailDev").onclick=()=>{const u=supportUrl("email");u?go(u):note("Enter the developer email address in Settings first.")};$("waDev").onclick=()=>{const u=supportUrl("wa");u?go(u):note("Enter the developer WhatsApp link or number in Settings first.")};$("fbDev").onclick=()=>{const u=supportUrl("fb");u?go(u):note("Enter the developer Facebook link in Settings first.")};
+function owner(){$("ow").innerHTML=`<b>Developed and owned by</b> ${OWNER.name}, ${OWNER.co} (${OWNER.parent})<br>Any problem? Call <a style="color:var(--cy)" href="tel:${OWNER.tel}">${OWNER.tel}</a> or <a style="color:var(--cy)" href="https://wa.me/${OWNER.wa}" target="_blank" rel="noopener">WhatsApp ${OWNER.tel}</a>`}
+function applyPrefs(){const d=document.documentElement;d.style.setProperty("--z",+S.fs||1);if(S.ac&&S.ac!=="default")d.style.setProperty("--cy",S.ac);else d.style.removeProperty("--cy");d.classList.toggle("noanim",!S.anim);d.classList.toggle("hc",!!S.hc);d.style.setProperty("--r",(S.rd||24)+"px");d.style.setProperty("--lh",S.lh||1.5);
+ document.body.classList.remove("ff-dys","ff-ser","ff-mono");if(S.ff)document.body.classList.add("ff-"+S.ff);document.body.classList.toggle("nogrid",!S.grid);
+ if(S.th){d.dataset.theme=S.th;try{localStorage.setItem("hs_theme",S.th)}catch(e){}}
+ $("tg").textContent=S.pn?"Welcome, "+S.pn:"Future learning network"}
+$("gs").onclick=()=>{clearInterval(tm);clearTimeout(adv);stopSay();fill();renderSupport();show("set")};
+$("sv").onclick=()=>{SPEC.forEach(([k,t,y,a,b])=>{if(y==="hd")return;const e=$("s_"+k);if(!e)return;if(y==="chk")S[k]=e.checked;else if(y==="num"){const n=parseFloat(e.value);S[k]=isNaN(n)?DEF[k]:Math.min(b,Math.max(a,n))}else S[k]=e.value.trim()});
+ EV.forEach(([k])=>{S.snd[k]=$("q_"+k).value});persist();setMode(mode,true);applyPrefs();if("speechSynthesis" in window)pick();else if(!S.voice)$("vs").textContent="Voice off";owner();home()};
+$("rv2").onclick=()=>{refreshVoices();fillVoices();updateVoiceCount();note(VOICES.length?"Browser/device voices refreshed.":"No browser/device voices are exposed yet. Check the phone/browser speech settings, then refresh voices.")};
+function updateVoiceCount(){const e=$("voiceCount");if(!e)return;const n=browserVoiceList().length;e.textContent=n+" browser/device voice"+(n===1?"":"s")+" available. Fish Audio is available when a secure proxy URL and voice ID are configured."}
+$("tv").onclick=()=>{
+ const old={voice,S_vp:S.vp,S_vv:S.vv,S_rate:S.rate,S_voice:S.voice};
+ S.te=$("s_te").value;S.vn=$("s_vn").value;S.fishEndpoint=$("s_fishEndpoint")?.value.trim()||S.fishEndpoint||"";S.fishVoice=$("s_fishVoice")?.value.trim()||S.fishVoice||"";
+ S.vp=+($("s_vp")?.value||1)||1;S.vv=+($("s_vv")?.value||1)||1;S.rate=+($("s_rate")?.value||.95)||.95;S.voice=true;pick();
+ say("Hello. This is how your selected voice sounds.",()=>{voice=old.voice;S.vp=old.S_vp;S.vv=old.S_vv;S.rate=old.S_rate;S.voice=old.S_voice});
+};
+$("sr").onclick=()=>{try{localStorage.removeItem("hs_board")}catch(e){}showBoard();note("Scoreboard cleared.")};
+$("qq").onclick=home;$("cl").onclick=home;$("sx").onclick=home;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("home").classList.contains("hide"))home()});
+
+/* XP and rank */
+let XP=0;try{XP=+localStorage.getItem("hs_xp")||0}catch(e){}
+const RK=[[0,"Cadet"],[100,"Scout"],[300,"Cyber Scholar"],[700,"Quantum Master"],[1500,"Legend"]];
+function rank(){let r="Cadet";RK.forEach(x=>{if(XP>=x[0])r=x[1]});$("rk").textContent=r+" | "+XP+" XP"}
+function addXp(n){XP+=n;try{localStorage.setItem("hs_xp",XP)}catch(e){}rank()}
+
+/* Virtual teachers */
+let lq,li;
+function daysLeft(){let t={};try{t=JSON.parse(localStorage.getItem("hs_trial")||"{}")}catch(e){}if(!t[lv]){t[lv]=Date.now();try{localStorage.setItem("hs_trial",JSON.stringify(t))}catch(e){}}return Math.ceil(7-(Date.now()-t[lv])/864e5)}
+function openT(){if(!lv){setView("learn");home();note("Choose your grade first. Then open Learning.");try{$("gr").scrollIntoView({behavior:"smooth"})}catch(e){}return}stopSay();clearInterval(tm);clearTimeout(adv);const d=daysLeft();$("tn").textContent="Learn with AI - "+lv;
+ $("td").innerHTML=d>0?"Free week: <b>"+d+" day"+(d>1?"s":"")+" left</b> for "+lv+". Pick a subject to study, or ask the AI a question below.":"Your free week of Learning with AI for "+lv+" has ended. To continue, WhatsApp us on <a style='color:var(--cy)' href='https://wa.me/"+OWNER.wa+"' target='_blank' rel='noopener'>"+OWNER.tel+"</a>.";
+ $("ts").innerHTML="";$("lc").classList.add("hide");$("tcs").classList.remove("hide");$("ask").classList.remove("hide");if(!$("aiw").options.length)aiOpts().forEach(a=>$("aiw").add(new Option(a[1],a[0])));$("aimw").value=S.aim;$("aimw").onchange=()=>{S.aim=$("aimw").value;persist()};$("aiw").value=S.ai;$("asj").innerHTML='<option value="">Any subject</option>'+Object.keys(LV[lv]).map(n=>"<option>"+n+"</option>").join("");
+ Object.keys(LV[lv]).forEach(n=>{if(!LV[lv][n].length)return;const b=document.createElement("button");b.textContent="Learn "+n;b.disabled=d<=0;b.onclick=()=>{lq=LV[lv][n];li=0;teach()};$("ts").appendChild(b)});show("tch")}
+function teach(){clearTimeout(adv);const q=lq[li],n="AI";$("tcs").classList.add("hide");$("ask").classList.add("hide");$("lc").classList.remove("hide");window.scrollTo(0,0);$("lp").textContent="Point "+(li+1)+" of "+lq.length;
+ const t=q.q+" The answer is "+right(q)+"."+(q.e?" "+q.e:"");$("lt").textContent=t;
+ say("Remember this. "+t,()=>{if(S.auto)adv=setTimeout(()=>{if(li+1<lq.length){li++;teach()}},1500)})}
+$("lb").onclick=()=>{if(li>0){li--;teach()}};
+$("ln").onclick=()=>{if(li+1<lq.length){li++;teach()}else $("lx").click()};
+$("lx").onclick=()=>{clearTimeout(adv);stopSay();$("lc").classList.add("hide");$("tcs").classList.remove("hide");$("ask").classList.remove("hide");window.scrollTo(0,0)};
+$("vt").onclick=openT;
+$("lai").onclick=()=>{const q=lq[li];askAI("Explain this lesson point in more detail, with an example: "+q.q+" (Answer: "+right(q)+")")};
+$("ts2").onclick=()=>{if(/android/i.test(navigator.userAgent)){try{location.href="intent:#Intent;action=com.android.settings.TTS_SETTINGS;end"}catch(e){}}note("To change the phone speech engine: open Settings, then Accessibility or System, then Text-to-speech output. Pick Google or another engine there, then tap Refresh voices here.")};$("tbk").onclick=()=>{setView("learn");home()};
+
+/* AI teacher: answers from lessons, otherwise opens an AI website */
+const STOP=new Set("what is the an of in to and which who name give how does are was for with from this that".split(" "));
+function findAns(q){const k=(q.toLowerCase().match(/[a-z0-9]+/g)||[]).filter(x=>x.length>2&&!STOP.has(x));if(!k.length)return null;let best=null,bs=0;
+ Object.keys(LV[lv]).forEach(n=>LV[lv][n].forEach(it=>{const t=(it.q+" "+right(it)+" "+(it.o||[]).join(" ")).toLowerCase();const sc=k.filter(x=>t.includes(x)).length/k.length;if(sc>bs){bs=sc;best=it}}));return bs>=.6?best:null}
+function tpr(q){const s=$("asj").value;return "You are a patient, friendly teacher for a "+(lv||"school")+" student in Zambia following the Zambian (ECZ) school syllabus"+(s?", subject: "+s:"")+". Teach step by step in simple words, give one clear example, then ask me one short practice question. My question: "+q}
+function aiOpts(){return AIS.map(x=>[x[0],x[1]]).concat([["custom","My own cloud AI link"]])}
+function openAI(a,p){const u=a[2].replace("{q}",encodeURIComponent(p));
+ if(S.aim==="app"&&a[3]&&/android/i.test(navigator.userAgent)){try{const x=new URL(u);location.href="intent://"+x.host+x.pathname+x.search+"#Intent;scheme=https;package="+a[3]+";S.browser_fallback_url="+encodeURIComponent(u)+";end";return "app"}catch(e){}}
+ go(u);return S.aim==="app"?"iapp":"web"}
+function askAI(q,key){const k=key||$("aiw").value;let a;
+ if(k==="custom"){if(!/^https:\/\//i.test(S.aicu||"")){note("Add your own AI link in Settings, AI teacher. It must start with https.");return}a=["custom","your cloud AI",S.aicu.trim()]}else a=AIS.find(x=>x[0]===k)||AIS[0];
+ const p=tpr(q);try{navigator.clipboard.writeText(p)}catch(e){}if(!key){S.ai=a[0];persist()}
+ const h=openAI(a,p);note((h==="app"?"Opening the "+a[1]+" app if it is installed. ":h==="iapp"?"Opened "+a[1]+". On iPhone the app opens by itself if it is installed. ":"Opened "+a[1]+". ")+"Your question was copied. Paste it if it does not fill in.")}
+$("ak").onclick=()=>{const q=$("aq").value.trim();if(!q){note("Type or speak a question first.");return}const it=lv&&findAns(q);if(it){lq=[it];li=0;teach()}else askAI(q)};
+$("ak2").onclick=()=>{const q=$("aq").value.trim();q?askAI(q):note("Type or speak a question first.")};
+$("mic").onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){note("Voice typing is not supported in this browser. Type your question instead.");return}
+ const r=new SR();r.lang=(voice&&voice.lang)||"en-US";r.onresult=e=>{$("aq").value=e.results[0][0].transcript};r.onerror=e=>note("Microphone problem ("+e.error+"). Check the microphone permission.");try{r.start();note("Listening. Speak your question now.")}catch(e){}};
+/* Read every pressed button aloud (accessibility) */
+document.addEventListener("click",e=>{if(!S.sr)return;const b=e.target.closest&&e.target.closest("button");if(!b||b.id==="hi"||b.id==="tv")return;
+ let t=b.getAttribute("aria-label")||[...b.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join(" ").replace(/\s+/g," ").trim()||b.textContent.trim();if(t)say(t,null,true)},true);
+let ptr=0;document.addEventListener("pointerdown",()=>{ptr=Date.now()},true);
+document.addEventListener("focusin",e=>{if(!S.sr||!S.sr2)return;const el=e.target;if(!el||!el.tagName||el.tagName==="BODY"||(el.tagName==="BUTTON"&&Date.now()-ptr<700))return;
+ let t=el.getAttribute("aria-label");if(!t&&el.id){const l=document.querySelector('label[for="'+el.id+'"]');if(l)t=l.textContent}
+ if(!t)t=(el.textContent||el.placeholder||"").replace(/\s+/g," ").trim();if(!t)return;
+ const k=el.tagName==="INPUT"&&el.type==="checkbox"?(el.checked?", on":", off"):el.tagName==="SELECT"?", "+((el.options[el.selectedIndex]||{}).text||""):el.tagName==="INPUT"?", text field":"";say(t.slice(0,140)+k,null,true)});
+
+/* Real teachers */
+const PL=[["zoom","Zoom","zoom.us|zoomgov.com"],["meet","Google Meet","meet.google.com"],["wa","WhatsApp","wa.me|whatsapp.com"],["ig","Instagram","instagram.com"],["fb","Facebook","facebook.com|fb.com|fb.me"],["x","X","x.com|twitter.com"],["tg","Telegram","t.me"]];
+function persist(){try{localStorage.setItem("hs_set",JSON.stringify(S))}catch(e){}}
+function go(u){const w=window.open(u,"_blank");if(w){try{w.opener=null}catch(e){}}else location.href=u}
+function normLink(k,v){v=v.trim();if(!v)return "";if(k==="wa"&&/^\+?[\d\s-]{8,}$/.test(v))return "https://wa.me/"+v.replace(/\D/g,"");
+ if(/^@?[\w.]+$/.test(v)&&{ig:1,x:1,fb:1}[k])v="https://"+{ig:"instagram.com",x:"x.com",fb:"facebook.com"}[k]+"/"+v.replace("@","");
+ if(!/^https?:\/\//i.test(v))v="https://"+v;let u;try{u=new URL(v)}catch(e){return null}
+ const d=PL.find(x=>x[0]===k)[2].split("|");return u.protocol==="https:"&&d.some(x=>u.hostname===x||u.hostname.endsWith("."+x))?u.href:null}
+function openR(){stopSay();clearInterval(tm);clearTimeout(adv);
+ if(!$("rg").options.length){Object.keys(LV).forEach(g=>$("rg").add(new Option(g)));PL.forEach(x=>$("rpf").add(new Option(x[1])))}
+ if(lv)$("rg").value=lv;if(!$("rn").value)$("rn").value=S.pn||"";
+ $("pl").innerHTML=PL.map(x=>`<label for="l_${x[0]}">${x[1]}</label><div class="row" style="flex-wrap:nowrap"><input type="text" id="l_${x[0]}" style="margin:0;flex:1" placeholder="${x[0]==="wa"?"Number or link":"Link"}" value="${(S.links[x[0]]||"").replace(/"/g,"&quot;")}"><button data-o="${x[0]}">Open</button></div>`).join("");
+ $("pl").querySelectorAll("button[data-o]").forEach(b=>b.onclick=()=>{const u=S.links[b.dataset.o];u?go(u):note("Paste and save the link first, then tap Open.")});
+rqStat();show("rt")}
+$("ps").onclick=()=>{const n={};let bad=null;PL.forEach(x=>{const r=normLink(x[0],$("l_"+x[0]).value);if(r===null)bad=bad||x[1];else if(r)n[x[0]]=r});
+ if(bad){note("The "+bad+" link is not valid. Check it and try again.");return}S.links=n;persist();openR();note("Links saved.")};
+const FREE=3;function reqUsed(){try{return +localStorage.getItem("hs_req")||0}catch(e){return 0}}
+function rqStat(){const u=reqUsed(),l=Math.max(0,FREE-u);$("rqi").textContent=l>0?"Free requests left: "+l+" of "+FREE+". After that, more requests are paid.":"You have used all "+FREE+" free requests. To request another real teacher you need to pay. Tap the button below to WhatsApp "+OWNER.tel+" and ask how much to pay.";$("pay").classList.toggle("hide",l>0);$("rq").classList.toggle("hide",l<=0)}
+$("pay").onclick=()=>go("https://wa.me/"+OWNER.wa+"?text="+encodeURIComponent("Hello "+OWNER.co+". My name is "+($("rn").value.trim()||"a learner")+". I have used my "+FREE+" free real teacher requests. How much do I pay for more requests, and how do I pay?"));
+$("rq").onclick=()=>{if(reqUsed()>=FREE){rqStat();say("You have used your three free requests. Please pay to continue. Tap the WhatsApp button to ask how much.");return}
+ try{localStorage.setItem("hs_req",reqUsed()+1)}catch(e){}rqStat();go("https://wa.me/"+OWNER.wa+"?text="+encodeURIComponent("Hello "+OWNER.co+". My name is "+($("rn").value.trim()||"a learner")+". I am in "+$("rg").value+". Please match me with a real online teacher for "+($("rs").value.trim()||"any subject")+". My preferred platform is "+$("rpf").value+"."))};
+$("mt").onclick=$("t2r").onclick=openR;$("nva").onclick=()=>{setView("quiz");home()};$("nvh").onclick=()=>{setView("learn");home()};$("rbk").onclick=()=>{setView("learn");home()};
+$("sh").onclick=()=>go("https://wa.me/?text="+encodeURIComponent("I scored "+score+" out of "+qs.length+" in "+lv+" "+sub+" on Hardcore School!"));
+window.addEventListener("popstate",()=>{if($("home").classList.contains("hide"))home()});
+document.addEventListener("pointerdown",e=>{const b=e.target.closest&&e.target.closest("button");if(!b||b.disabled)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),o=document.createElement("span");o.className="rp";o.style.cssText="width:"+d+"px;height:"+d+"px;left:"+(e.clientX-r.left-d/2)+"px;top:"+(e.clientY-r.top-d/2)+"px";b.appendChild(o);setTimeout(()=>o.remove(),600)});
+
+
+/* Device interface mode */
+const DEVICE_KEY="hs_device_mode";
+function detectDeviceMode(){return window.matchMedia&&window.matchMedia("(max-width: 700px)").matches?"mobile":"desktop"}
+function applyDeviceMode(choice,quiet){
+ const actual=choice==="auto"?detectDeviceMode():choice;
+ document.body.classList.toggle("device-mobile",actual==="mobile");
+ document.body.classList.toggle("device-desktop",actual==="desktop");
+ document.body.dataset.deviceMode=choice;
+ const label=choice==="auto"?"Auto":choice==="mobile"?"Phone":"Desktop";
+ const status=$("deviceStatus"); if(status)status.textContent=label+" layout";
+ const top=$("dml"); if(top)top.textContent=label;
+ ["modeAuto","modePhone","modeDesktop"].forEach(id=>{const b=$(id);if(b)b.setAttribute("aria-pressed",id==="mode"+({auto:"Auto",mobile:"Phone",desktop:"Desktop"}[choice]||""))});
+ try{localStorage.setItem(DEVICE_KEY,choice)}catch(e){}
+ if(!quiet && typeof note==="function")note("Interface set to "+label+" mode.");
+}
+function savedDeviceMode(){try{return localStorage.getItem(DEVICE_KEY)||"auto"}catch(e){return "auto"}}
+function initDeviceMode(){
+ const choice=savedDeviceMode(); applyDeviceMode(choice,true);
+ ["modeAuto","modePhone","modeDesktop"].forEach(id=>{const b=$(id);if(b)b.onclick=()=>applyDeviceMode(id==="modeAuto"?"auto":id==="modePhone"?"mobile":"desktop",false)});
+ const dm=$("dm");if(dm)dm.onclick=()=>{const cur=document.body.dataset.deviceMode||"auto";const next=cur==="auto"?"mobile":cur==="mobile"?"desktop":"auto";applyDeviceMode(next,false)};
+ if(window.matchMedia){const mq=window.matchMedia("(max-width: 700px)");const fn=()=>{if((document.body.dataset.deviceMode||"auto")==="auto")applyDeviceMode("auto",true)};mq.addEventListener?mq.addEventListener("change",fn):mq.addListener&&mq.addListener(fn)}
+}
+
+initDeviceMode();
+/* Theme */
+try{const t=localStorage.getItem("hs_theme");if(t)document.documentElement.dataset.theme=t}catch(e){}
+$("th").onclick=()=>{const d=document.documentElement,n=d.dataset.theme==="dark"?"light":"dark";d.dataset.theme=n;try{localStorage.setItem("hs_theme",n)}catch(e){}};
+function setMode(m,quiet){mode=m;document.body.classList.toggle("sp",m==="sp");TIME=m==="sp"?S.tsp:S.tn;$("mn").setAttribute("aria-pressed",m==="normal");$("ms").setAttribute("aria-pressed",m==="sp");try{localStorage.setItem("hs_mode",m)}catch(e){}
+ if(!quiet)say(m==="sp"?"Special education selected. Text is larger, the voice is slower, and you get "+S.tsp+" seconds per question. Press a letter or number to answer. Press R to hear a question again, and N for the next question.":"Normal learning selected.")}
+function helpText(){return "Application help is available in Settings, About and Help."}
+function showHelp(){stopSay();$("gs").click();setTimeout(()=>$("aboutPanel").scrollIntoView({behavior:"smooth",block:"start"}),100)}
+$("mn").onclick=()=>setMode("normal");$("ms").onclick=()=>setMode("sp");$("hi").onclick=showHelp;
+try{const m=localStorage.getItem("hs_mode");if(m==="sp")setMode("sp",true)}catch(e){}
+document.addEventListener("keydown",e=>{
+ if(e.ctrlKey||e.metaKey||e.altKey)return;
+ const t=e.target.tagName;if(t==="INPUT"||t==="SELECT")return;
+ const k=e.key.toLowerCase();
+ if(!$("home").classList.contains("hide")){if(k==="n")setMode("normal");else if(k==="s")setMode("sp");else if(k==="h")showHelp()}
+ else if(!$("quiz").classList.contains("hide")){
+  if(k==="r")$("rp").click();
+  else if(k==="n"&&!$("nx").classList.contains("hide"))$("nx").click();
+  else{const q=qs[i],x=L.toLowerCase().indexOf(k),y="1234".indexOf(k),d=x>-1?x:y;if(q&&q.o&&d>-1&&d<q.o.length&&!$("ans").children[d].disabled)check(d)}}
+});
+window.addEventListener("error",e=>note("Something went wrong: "+e.message+". Reload the page."));
+dayTick();setView("learn");showBoard();showStats();owner();rank();applyPrefs();setMode(mode,true);if(!S.voice)$("vs").textContent="Voice off";
+</script>
+</body>
+</html>
